@@ -9,18 +9,33 @@
 <script>
 import TheHeaderNav from "./components/common/TheHeaderNav.vue";
 import TheFooterNav from "./components/common/TheFooterNav.vue";
+import axios from "axios";
 
 export default {
     name: "App",
     components: {TheHeaderNav, TheFooterNav},
     data() {
         return {
-            message: "",
+            member: null,
         };
     },
-    created() {
+    methods: {
+        login(member) {
+            const API_URL = `http://localhost:8080/login`;
+
+            axios({
+                url: API_URL,
+                method: "post",
+                data: {
+                    member
+                }
+            })
+                .then((response) => {
+                    let data = response.accessToken;
+                    console.log(data);
+                })
+        }
     },
-    methods: {},
 };
 
 </script>
