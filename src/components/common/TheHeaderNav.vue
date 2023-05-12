@@ -1,18 +1,37 @@
 <template>
-    <div>
-        <b-navbar toggleable="lg" type="dark" variant="info">
-            <b-navbar-brand to="/">NavBar</b-navbar-brand>
-            <b-collapse id="nav-collapse" is-nav>
-                <b-navbar-nav class="ml-auto">
-                    <b-nav-item to="/attractions">지역별여행지</b-nav-item>
-                    <b-nav-item to="/tripPlans">나의여행계획</b-nav-item>
-                    <b-nav-item to="/hotPlaces">핫플자랑하기</b-nav-item>
-                    <b-nav-item to="/boards">자유게시판</b-nav-item>
-                    <b-nav-item to="/login">로그인</b-nav-item>
-                    <b-nav-item to="/join">회원가입</b-nav-item>
-                </b-navbar-nav>
-            </b-collapse>
-        </b-navbar>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3">
+            <router-link to="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <img src="../../assets/logo.svg">
+            </router-link>
+
+            <ul class="nav">
+                <li class="nav-item">
+                    <router-link to="/attractions" class="nav-link text-dark">지역별여행지</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/tripPlans" class="nav-link text-dark">나의여행계획</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/hotPlaces" class="nav-link text-dark">핫플자랑하기</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/boards" class="nav-link text-dark">자유게시판</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/join" class="nav-link text-dark">회원가입</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/login" class="nav-link text-dark">로그인</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/my" class="nav-link text-dark">마이페이지</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/logout" class="nav-link text-dark">로그아웃</router-link>
+                </li>
+            </ul>
+        </header>
     </div>
 </template>
 
