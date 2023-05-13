@@ -74,15 +74,17 @@ export default {
             };
 
             const API_URL = `http://localhost:8080/login`;
-            console.log(member);
             axios({
                 url: API_URL,
                 method: "post",
                 data: member,
             })
                 .then((response) => {
-
-                    localStorage.setItem("loginMember", response.data);
+                    if (response.data) {
+                        const jwtToken = response.data.grantType + " " + response.data.accessToken;
+                        localStorage.setItem("jwt-token", jwtToken);
+                        this.$router.push("/");
+                    }
                 })
             this.$emit("login", member);
         }
