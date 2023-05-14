@@ -7,4 +7,4 @@
 export default {
     name: "NoticeView",
 }
-</script>현
+</script>
