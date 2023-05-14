@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <the-header-nav :member='member' @logout="logout"/>
+        <the-header-nav @logout="logout"/>
         <router-view @login="login"/>
         <the-footer-nav/>
     </div>
@@ -24,12 +24,15 @@ export default {
                       console.log("login")
                       const jwtToken = response.data.grantType + " " + response.data.accessToken;
                       localStorage.setItem('jwt-token', jwtToken);
-                      this.$router.push('/redirect');
+                      this.$router.push('/');
                   }
               });
         },
         logout() {
             console.log("logout");
+            localStorage.removeItem('jwt-token');
+            this.$router.replace('/')
+              .catch(() => {});
         },
     },
 };

@@ -26,7 +26,7 @@
                     <router-link to="/join" class="nav-link text-dark">회원가입</router-link>
                 </li>
                 <li class="nav-item" v-if="getMember">
-                    <router-link to="/logout" class="nav-link text-dark">로그아웃</router-link>
+                    <a to="#" class="nav-link text-dark" @click="logout">로그아웃</a>
                 </li>
                 <li class="nav-item" v-else>
                     <router-link to="/login" class="nav-link text-dark">로그인</router-link>
