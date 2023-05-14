@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <the-header-nav/>
-        <router-view/>
+        <the-header-nav :member='member' @logout="logout"/>
+        <router-view @login="login"/>
         <the-footer-nav/>
     </div>
 </template>
@@ -14,27 +14,23 @@ import axios from "axios";
 export default {
     name: "App",
     components: {TheHeaderNav, TheFooterNav},
-    data() {
-        return {
-            member: null,
-        };
-    },
     methods: {
         login(member) {
             const API_URL = `http://localhost:8080/login`;
 
-            axios({
-                url: API_URL,
-                method: "post",
-                data: {
-                    member
-                }
-            })
-                .then((response) => {
-                    let data = response.accessToken;
-                    console.log(data);
-                })
-        }
+            axios.post(API_URL, member)
+              .then((response) => {
+                  if (response.data) {
+                      console.log("login")
+                      const jwtToken = response.data.grantType + " " + response.data.accessToken;
+                      localStorage.setItem('jwt-token', jwtToken);
+                      this.$router.push('/redirect');
+                  }
+              });
+        },
+        logout() {
+            console.log("logout");
+        },
     },
 };
 

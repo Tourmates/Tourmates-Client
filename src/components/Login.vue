@@ -11,7 +11,6 @@
                         <div class='mt-3'>
                             <h1 class='fw-bold'>Welcome back</h1>
                         </div>
-
                         <!-- login form -->
                         <div class='mt-5'>
                             <div class="mb-3">
@@ -56,8 +55,6 @@
     </div>
 </template>
 <script>
-import axios from "axios";
-
 export default {
     name: 'LoginView',
     data() {
@@ -72,20 +69,6 @@ export default {
                 loginId: this.loginId,
                 loginPw: this.loginPw,
             };
-
-            const API_URL = `http://localhost:8080/login`;
-            axios({
-                url: API_URL,
-                method: "post",
-                data: member,
-            })
-                .then((response) => {
-                    if (response.data) {
-                        const jwtToken = response.data.grantType + " " + response.data.accessToken;
-                        localStorage.setItem("jwt-token", jwtToken);
-                        this.$router.push("/");
-                    }
-                })
             this.$emit("login", member);
         }
     }
