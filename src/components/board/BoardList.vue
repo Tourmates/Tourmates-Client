@@ -62,12 +62,6 @@
                                 {{ num }}
                             </router-link>
                         </li>
-                        <!--                        <c:forEach var="num" begin="${page.startPage}" end="${page.endPage}">-->
-                        <!--                            <li class="page-item">-->
-                        <!--                                <a class="page-link"-->
-                        <!--                                   href="${root}/articles?pageNum=${num}&amount=${page.amount}">${num}</a>-->
-                        <!--                            </li>-->
-                        <!--                        </c:forEach>-->
                         <li class="page-item" v-if="page.next">
                             <router-link :to="`/boards?pageNum=${page.endPage + 1}&amount=${page.amount}`"
                                          class="page-link" aria-label="Next">
