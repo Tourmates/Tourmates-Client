@@ -1,10 +1,69 @@
 <template>
-    <div>
-        <h1>공지사항 세부조회</h1>
+    <div class="container">
+        <table class="table">
+            <tbody class="table-group-divider">
+            <tr>
+                <td>
+                    <div class='pt-3 pb-3'>
+                        <div class="row">
+                            <div class="col-10">
+                                <h4 class='mb-3'>{{notice.title}}</h4>
+                            </div>
+                            <div class="col-2 text-end">
+                                {{notice.createdDate}}
+                            </div>
+                        </div>
+                        <div>운영자</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class='p-3'>
+                        {{notice.content}}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+            <router-link :to="`/notices`" class="btn btn-primary me-3">목록</router-link>
+            <router-link :to="`/notices/${notice.noticeId}/edit`" class="btn btn-secondary me-3">수정</router-link>
+            <a class="btn btn-danger" @click="remove">삭제</a>
+        </div>
     </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
     name: "DetailNotice",
+    data() {
+        return {
+            notice: "",
+        };
+    },
+    methods: {
+        getNotice() {
+            const API_URL = `http://localhost:8080${this.$route.fullPath}`;
+            axios.get(API_URL)
+              .then((response) => {
+                  console.log(response);
+                  this.notice = response.data.data;
+              });
+        },
+        remove() {
+            const API_URL = `http://localhost:8080${this.$route.fullPath}/remove`;
+            axios.post(API_URL)
+              .then(() => {
+                  console.log("notice remove");
+                  this.$router.replace('/notices')
+                    .catch(() => {});
+              })
+        },
+    },
+    created() {
+        this.getNotice();
+    }
 };
 </script>

@@ -20,6 +20,7 @@
                         :key="`${index}_notices`"
                         :no="1"
                         :noticeId="notice.noticeId"
+                        :pin="notice.pin"
                         :title="notice.title"
                         :createdDate="notice.createdDate"
                 />
@@ -59,7 +60,6 @@ export default {
             axios.get(API_URL)
               .then((response) => {
                   this.notices = response.data.data;
-                  this.page = response.data.page;
               })
         }
     }

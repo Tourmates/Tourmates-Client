@@ -57,7 +57,7 @@ export default {
             this.initComponent();
         },
         initComponent() {
-            const API_URL = "http://localhost:8080/notices/paging";
+            const API_URL = "http://localhost:8080/notices/totalCount";
             axios.get(API_URL)
               .then((response) => {
                   this.totalListItemCount = response;
