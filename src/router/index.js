@@ -3,10 +3,11 @@ import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/components/Login.vue'
 import BoardView from '@/views/BoardView.vue'
-import BoardList from '@/components/board/BoardList.vue'
+import Boards from '@/components/board/Boards.vue'
 import RegisterBoard from "@/components/board/RegisterBoard.vue";
 import NoticeView from "@/views/NoticeView.vue";
 import NoticeList from "@/components/notice/NoticeList.vue";
+import BoardList from "@/components/board/list/BoardList.vue";
 import List from "@/components/notice/list/List.vue";
 import DetailNotice from "@/components/notice/DetailNotice.vue";
 import RegisterNotice from "@/components/notice/RegisterNotice.vue";
@@ -32,7 +33,13 @@ const routes = [
       {
         path: '',
         name: 'boardList',
-        component: BoardList,
+        component: Boards,
+        children: [
+          {
+            path: '',
+            component: BoardList,
+          }
+        ]
       },
       {
         path: 'register',
