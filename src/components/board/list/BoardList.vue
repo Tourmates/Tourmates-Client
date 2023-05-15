@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div>
+        <div v-if="boards.length === 0">등록된 게시물이 없습니다.</div>
+        <div v-else>
             <table class="table mt-3">
                 <colgroup>
                     <col :style="{width: '10%'}">
@@ -20,7 +21,6 @@
                 </tbody>
             </table>
         </div>
-        <div>등록된 게시물이 없습니다.</div>
     </div>
 </template>
 <script>
