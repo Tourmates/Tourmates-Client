@@ -12,6 +12,8 @@ import List from "@/components/notice/list/List.vue";
 import DetailNotice from "@/components/notice/DetailNotice.vue";
 import RegisterNotice from "@/components/notice/RegisterNotice.vue";
 import EditNotice from "@/components/notice/EditNotice.vue";
+import DetailBoard from "@/components/board/DetailBoard.vue";
+import EditBoard from "@/components/board/EditBoard.vue";
 
 Vue.use(VueRouter)
 
@@ -45,6 +47,16 @@ const routes = [
         path: 'register',
         name: 'registerBoard',
         component: RegisterBoard,
+      },
+      {
+        path: ':boardId',
+        name: 'detailBoard',
+        component: DetailBoard
+      },
+      {
+        path: ':boardId/edit',
+        name: "editBoard",
+        component: EditBoard,
       }
     ]
   },
