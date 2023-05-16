@@ -19,17 +19,13 @@
             </tr>
             <tr>
                 <td>
-                    <div class='p-3'>
-                        {{notice.content}}
-                    </div>
+                    <div class='p-3' v-html="notice.content"></div>
                 </td>
             </tr>
             </tbody>
         </table>
         <div class="d-flex justify-content-center">
             <router-link :to="`/notices`" class="btn btn-primary me-3">목록</router-link>
-            <router-link :to="`/notices/${notice.noticeId}/edit`" class="btn btn-secondary me-3">수정</router-link>
-            <a class="btn btn-danger" @click="remove">삭제</a>
         </div>
     </div>
 </template>
@@ -51,15 +47,6 @@ export default {
                   console.log(response);
                   this.notice = response.data.data;
               });
-        },
-        remove() {
-            const API_URL = `http://localhost:8080${this.$route.fullPath}/remove`;
-            axios.post(API_URL)
-              .then(() => {
-                  console.log("notice remove");
-                  this.$router.replace('/notices')
-                    .catch(() => {});
-              })
         },
     },
     created() {

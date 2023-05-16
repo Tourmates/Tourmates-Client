@@ -10,8 +10,6 @@ import NoticeList from "@/components/notice/NoticeList.vue";
 import BoardList from "@/components/board/list/BoardList.vue";
 import List from "@/components/notice/list/List.vue";
 import DetailNotice from "@/components/notice/DetailNotice.vue";
-import RegisterNotice from "@/components/notice/RegisterNotice.vue";
-import EditNotice from "@/components/notice/EditNotice.vue";
 import DetailBoard from "@/components/board/DetailBoard.vue";
 import EditBoard from "@/components/board/EditBoard.vue";
 
@@ -76,20 +74,10 @@ const routes = [
         ]
       },
       {
-        path: 'register',
-        name: 'registerNotice',
-        component: RegisterNotice,
-      },
-      {
         path: ':noticeId',
         name: 'detailNotice',
         component: DetailNotice,
       },
-      {
-        path: ':noticeId/edit',
-        name: 'editNotice',
-        component: EditNotice,
-      }
     ]
   }
 ]
