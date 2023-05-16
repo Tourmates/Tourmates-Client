@@ -12,6 +12,7 @@ import List from "@/components/notice/list/List.vue";
 import DetailNotice from "@/components/notice/DetailNotice.vue";
 import DetailBoard from "@/components/board/DetailBoard.vue";
 import EditBoard from "@/components/board/EditBoard.vue";
+import Join from "@/components/Join.vue";
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
+  },
+  {
+    path: '/join',
+    name: 'join',
+    component: Join,
   },
   {
     path: '/boards',
