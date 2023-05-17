@@ -13,6 +13,10 @@ import DetailNotice from "@/components/notice/DetailNotice.vue";
 import DetailBoard from "@/components/board/DetailBoard.vue";
 import EditBoard from "@/components/board/EditBoard.vue";
 import Join from "@/components/Join.vue";
+import QnaView from "@/views/QnaView.vue";
+import QnaList from "@/components/qna/QnaList.vue";
+import QnaList2 from "@/components/qna/list/List.vue";
+import DetailQna from "@/components/qna/DetailQna.vue";
 
 Vue.use(VueRouter)
 
@@ -83,6 +87,28 @@ const routes = [
         path: ':noticeId',
         name: 'detailNotice',
         component: DetailNotice,
+      },
+    ]
+  },
+  {
+    path: '/qna',
+    component: QnaView,
+    children: [
+      {
+        path: '',
+        name: 'qnaList',
+        component: QnaList,
+        children: [
+          {
+            path: '',
+            component: QnaList2,
+          }
+        ]
+      },
+      {
+        path: ':questionId',
+        name: `detailQna`,
+        component: DetailQna,
       },
     ]
   }
