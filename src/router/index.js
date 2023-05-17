@@ -17,6 +17,7 @@ import QnaView from "@/views/QnaView.vue";
 import QnaList from "@/components/qna/QnaList.vue";
 import QnaList2 from "@/components/qna/list/List.vue";
 import DetailQna from "@/components/qna/DetailQna.vue";
+import RegisterQna from "@/components/qna/RegisterQna.vue";
 
 Vue.use(VueRouter)
 
@@ -107,8 +108,13 @@ const routes = [
       },
       {
         path: ':questionId',
-        name: `detailQna`,
+        name: 'detailQna',
         component: DetailQna,
+      },
+      {
+        path: 'register',
+        name: 'registerQna',
+        component: RegisterQna,
       },
     ]
   }
