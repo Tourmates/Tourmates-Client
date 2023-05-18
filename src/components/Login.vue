@@ -38,7 +38,7 @@
                         <hr/>
                         <!-- social login -->
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary btn-lg" type="button">facebook</button>
+                            <a href="http://localhost:8080/oauth2/authorize/naver?redirect_uri=http://localhost:3000/oauth2/redirect" class="btn btn-primary btn-lg" type="button">naver</a>
                             <button class="btn btn-primary btn-lg" type="button">kakao</button>
                         </div>
                         <hr/>
