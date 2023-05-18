@@ -1,0 +1,17 @@
+export default {
+    AVAILABLE_LOGIN_ID: '사용할 수 있는 아이디입니다',
+    UNAVAILABLE_LOGIN_ID: '사용 불가능한 아이디입니다',
+    PATTERN_LOGIN_ID: '5자 이상 20자 이하의 영문 혹은 숫자를 조합',
+    PATTERN_LOGIN_PW: '영문/숫자/특수문자(공백 제외)만 허용하며, 3개 모두 조합',
+    LENGTH_LOGIN_PW: '최소 8자 이상 입력',
+    BLANK_CHECK_LOGIN_PW: '비밀번호를 한번 더 입력해 주세요.',
+    NOT_EQUAL_CHECK_LOGIN_PW: '동일한 비밀번호를 입력',
+    BLANK_NAME: '이름을 입력해 주세요.',
+    BLANK_EMAIL: '이메일을 입력해 주세요.',
+    PATTERN_EMAIL: '이메일 형식으로 입력해 주세요.',
+    AVAILABLE_EMAIL: '사용할 수 있는 이메일입니다',
+    UNAVAILABLE_EMAIL: '사용 불가능한 이메일입니다',
+    BLANK_TEL: '휴대폰 번호를 입력해 주세요.',
+    AVAILABLE_NICKNAME: '사용할 수 있는 닉네임입니다',
+    UNAVAILABLE_NICKNAME: '사용 불가능한 닉네임입니다',
+}
