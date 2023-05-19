@@ -9,8 +9,7 @@
           <div class="card-body">
             <div
                 class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                   class="bi bi-person-fill m-2" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-fill m-2" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
               </svg>
             </div>
@@ -24,8 +23,7 @@
           <div class="card-body">
             <div
                 class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                   class="bi bi-person-fill m-2" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-fill m-2" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
               </svg>
             </div>
@@ -34,13 +32,12 @@
           </div>
         </div>
       </div>
-      <div class="col" onclick="location.href='${root}/my/articles'">
+      <div class="col" onclick="location.href='/my/articles'">
         <div class="card h-100 border-0 shadow">
           <div class="card-body">
             <div
                 class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                   class="bi bi-person-fill m-2" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-fill m-2" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
               </svg>
             </div>
@@ -54,8 +51,7 @@
           <div class="card-body">
             <div
                 class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                   class="bi bi-person-fill m-2" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-fill m-2" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
               </svg>
             </div>
@@ -64,13 +60,12 @@
           </div>
         </div>
       </div>
-      <div class="col" onclick="location.href='${root}/my/account'">
+      <router-link to="/my/loginPw" class="col" style="text-decoration: none; color: #212529;">
         <div class="card h-100 border-0 shadow">
           <div class="card-body">
             <div
                 class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                   class="bi bi-person-fill m-2" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-fill m-2" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
               </svg>
             </div>
@@ -78,14 +73,13 @@
             <p class="card-text">본인 계정의 비밀번호를 변경할 수 있습니다.</p>
           </div>
         </div>
-      </div>
+      </router-link>
       <div class="col" onclick="location.href='${root}/my/withdrawal'">
         <div class="card h-100 border-0 shadow">
           <div class="card-body">
             <div
                 class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                   class="bi bi-person-fill m-2" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-fill m-2" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
               </svg>
             </div>
@@ -95,18 +89,29 @@
         </div>
       </div>
     </div>
-  </section>
-</div>
-</template>
+    <!-- <router-view/> -->
 
+  </section>
+
+</div>
+
+</template>
 <script>
+import axios from "axios";
 
 export default {
   name: "MyPage",
   methods: {
     myPage() {
-      
-    }
+      const API_URL = `http://localhost:8080/my/loginPw`;
+
+      axios.post(API_URL)
+        .then(() => {
+          console.log("비밀번호 변경");
+        }).catch(() => {
+          console.log("비밀번호 변경 실패");
+        });
+    }, 
 
   }
 
