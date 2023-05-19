@@ -19,6 +19,8 @@ import QnaList from "@/components/qna/QnaList.vue";
 import QnaList2 from "@/components/qna/list/List.vue";
 import DetailQna from "@/components/qna/DetailQna.vue";
 import RegisterQna from "@/components/qna/RegisterQna.vue";
+import HotPlaceView from "@/views/HotPlaceView.vue";
+import RegisterHotPlace from "@/components/hotplace/RegisterHotPlace.vue";
 
 Vue.use(VueRouter)
 
@@ -122,6 +124,17 @@ const routes = [
         name: 'registerQna',
         component: RegisterQna,
       },
+    ]
+  },
+  {
+    path: '/hotPlaces',
+    component: HotPlaceView,
+    children: [
+      {
+        path: 'register',
+        name: 'registerHotPlace',
+        component: RegisterHotPlace,
+      }
     ]
   }
 ]
