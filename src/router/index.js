@@ -23,6 +23,8 @@ import RegisterQna from "@/components/qna/RegisterQna.vue";
 import HotPlaceView from "@/views/HotPlaceView.vue";
 import RegisterHotPlace from "@/components/hotplace/RegisterHotPlace.vue";
 import Mypage from "@/components/member/MyPage.vue";
+import EditLoginPw from "@/components/member/EditLoginPw.vue";
+import MyPageView from "@/views/MyPageView.vue";
 
 Vue.use(VueRouter)
 
@@ -34,8 +36,20 @@ const routes = [
   },
   {
     path: '/my',
-    name: 'mypage',
-    component: Mypage,
+    name: 'MyPageView',
+    component: MyPageView,
+    children: [
+      {
+        path: '',
+        name: "Mypage",
+        component: Mypage,
+      },
+      {
+        path: 'loginPw',
+        name: 'EditLoginPw',
+        component: EditLoginPw,
+      }
+    ]
   },
   {
     path: '/login',
