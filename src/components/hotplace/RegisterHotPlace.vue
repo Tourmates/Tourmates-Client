@@ -8,6 +8,12 @@
                 </colgroup>
                 <tbody>
                 <tr>
+                    <th class='align-middle'>지도</th>
+                    <td>
+                        <KakaoMap/>
+                    </td>
+                </tr>
+                <tr>
                     <th class='align-middle'>카테고리</th>
                     <td>
                         <select class="form-select w-50" aria-label="Default select example" name="tag"
@@ -64,10 +70,12 @@
 <script>
 import {Vue2TinymceEditor} from "vue2-tinymce-editor";
 import axios from "axios";
+import KakaoMap from "@/components/hotplace/KakaoMap.vue";
 
 export default {
     name: "RegisterHotPlace",
     components: {
+        KakaoMap,
         Vue2TinymceEditor,
     },
     data() {
