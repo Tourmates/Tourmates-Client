@@ -22,6 +22,7 @@ import DetailQna from "@/components/qna/DetailQna.vue";
 import RegisterQna from "@/components/qna/RegisterQna.vue";
 import HotPlaceView from "@/views/HotPlaceView.vue";
 import RegisterHotPlace from "@/components/hotplace/RegisterHotPlace.vue";
+import Mypage from "@/components/member/MyPage.vue";
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/my',
+    name: 'mypage',
+    component: Mypage,
   },
   {
     path: '/login',
