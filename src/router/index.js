@@ -13,6 +13,7 @@ import List from "@/components/notice/list/List.vue";
 import DetailNotice from "@/components/notice/DetailNotice.vue";
 import DetailBoard from "@/components/board/DetailBoard.vue";
 import EditBoard from "@/components/board/EditBoard.vue";
+import Comments from "@/components/board/DetailBoard.vue";
 import Join from "@/components/Join.vue";
 import QnaView from "@/views/QnaView.vue";
 import QnaList from "@/components/qna/QnaList.vue";
@@ -23,6 +24,7 @@ import HotPlaceView from "@/views/HotPlaceView.vue";
 import RegisterHotPlace from "@/components/hotplace/RegisterHotPlace.vue";
 import HotPlaces from "@/components/hotplace/HotPlaces.vue";
 import HotPlaceList from "@/components/hotplace/list/HotPlaceList.vue";
+import Mypage from "@/components/member/MyPage.vue";
 
 Vue.use(VueRouter)
 
@@ -31,6 +33,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/my',
+    name: 'mypage',
+    component: Mypage,
   },
   {
     path: '/login',
@@ -56,6 +63,11 @@ const routes = [
             component: BoardList,
           }
         ]
+      },
+      {
+        path: ':boardId/comments/list',
+        name: 'commentList',
+        component: Comments
       },
       {
         path: 'register',

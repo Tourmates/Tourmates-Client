@@ -39,6 +39,20 @@
                                 <button class="btn btn-primary" type="button" @click="insertComment">등록</button>
                         </div>
                 </div>
+                <div>
+                    <ol class="list-group list-group-numbered">
+                    <ul v-for =  "comment in comments" :key = "comment" class="list-group-item d-flex justify-content-between align-items-start">
+                        <br />
+                        <div class="ms-2 me-auto">
+                            <span class="fw-bold">{{comment.nickName}}</span> | {{comment.createdTime}}
+                            <div>
+                                {{comment.content}}
+                            </div>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">14</span>
+                    </ul>
+                    </ol>
+                </div>
         </section>
 </template>
 
@@ -51,6 +65,7 @@ export default {
         return {
             board: "",
             comment: "",
+            comments: [],
         };
     },
     methods: {
@@ -88,6 +103,7 @@ export default {
             let data = {
                 comment: this.comment
             }
+            console.log("###Here");
 
             axios.post(API_URL, data, {
                     headers: {
@@ -97,10 +113,25 @@ export default {
                 .then(function (response) {
                     console.log(response);
                 });
+        },
+        initComponent() {
+            const API_URL = `http://localhost:8080${this.$route.fullPath}/comments/list`;
+            axios.post(API_URL)
+                .then((response) => {
+                    console.log("API_URL");
+                    console.log(API_URL);
+                    this.comments = response.data;
+                    // console.log("&&&&&&");
+                    // console.log(response);
+                    console.log("------");
+                    console.log(this.comments);
+                    console.log(this.comments.length);
+            })
         }
     },
     created() {
         this.getBoard();
+        this.initComponent(); 
     }
 }
 </script>
