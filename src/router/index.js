@@ -5,6 +5,7 @@ import LoginView from '@/components/Login.vue'
 import BoardView from '@/views/BoardView.vue'
 import Boards from '@/components/board/Boards.vue'
 import RegisterBoard from "@/components/board/RegisterBoard.vue";
+import RegisterBoardComment from "@/components/board/DetailBoard.vue";
 import NoticeView from "@/views/NoticeView.vue";
 import NoticeList from "@/components/notice/NoticeList.vue";
 import BoardList from "@/components/board/list/BoardList.vue";
@@ -63,6 +64,11 @@ const routes = [
         path: ':boardId',
         name: 'detailBoard',
         component: DetailBoard
+      },
+      {
+        path: ':boardId/comments/register',
+        name: 'registerBoardComment',
+        component: RegisterBoardComment,
       },
       {
         path: ':boardId/edit',
