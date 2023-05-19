@@ -27,8 +27,20 @@
             <router-link class="btn btn-secondary me-3" :to="`/boards/${board.boardId}/edit`">수정</router-link>
             <a class="btn btn-danger" @click="remove">삭제</a>
         </div>
+        <br />
+        <div class="p-3 bg-secondary bg-gradient bg-opacity-10 border border-bg-body border-start-0 rounded-end">
+            <div class="input-group">
+            <textarea rows = "7" cols = "50" class="form-control" aria-label="With textarea" placeholder="댓글을 입력하세요."></textarea>
+            </div>
+            <br />
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary" type="button">등록</button>
+            </div>
+        
+        </div>
     </section>
 </template>
+
 <script>
 import axios from "axios";
 
