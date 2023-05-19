@@ -13,6 +13,7 @@ import List from "@/components/notice/list/List.vue";
 import DetailNotice from "@/components/notice/DetailNotice.vue";
 import DetailBoard from "@/components/board/DetailBoard.vue";
 import EditBoard from "@/components/board/EditBoard.vue";
+import Comments from "@/components/board/DetailBoard.vue";
 import Join from "@/components/Join.vue";
 import QnaView from "@/views/QnaView.vue";
 import QnaList from "@/components/qna/QnaList.vue";
@@ -54,6 +55,11 @@ const routes = [
             component: BoardList,
           }
         ]
+      },
+      {
+        path: ':boardId/comments/list',
+        name: 'commentList',
+        component: Comments
       },
       {
         path: 'register',
