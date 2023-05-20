@@ -18,6 +18,11 @@
         </svg>
         {{personalInfo.username}}
         <br/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+          <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+        </svg>
+        {{personalInfo.nickname}}
+        <br/>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z"/>
         </svg>
@@ -33,17 +38,24 @@
         {{personalInfo.startPhoneNumber}}-{{personalInfo.middlePhoneNumber}}-{{personalInfo.endPhoneNumber}}
       </p>
       <div class="collapse mt-3" id="collapseExample">
-        <form class="card card-body" method="post" action="${root}/my/personal">
+        <form class="card card-body" method="post" action="/my/personal">
+          <div class="mb-3">
+            <label for="nickname" class="form-label">이름</label>
+            <input v-bind:type = "text" class = "form-control" id = "username" name = "username" placeholder="닉네임" v-model="username">
+            <!-- <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" value={{personalInfo.nickname}}> -->
+          </div>
           <div class="mb-3">
             <label for="nickname" class="form-label">닉네임</label>
-            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" value="${personalInfo.nickname}">
+            <input v-bind:type = "text" class = "form-control" id = "nickname" name = "nickname" placeholder="닉네임" v-model= "nickname">
+            <!-- <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" value={{personalInfo.nickname}}> -->
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">이메일</label>
             <div class="input-group" id="email">
-              <input type="text" class="form-control" placeholder="이메일아이디" aria-label="emailId" name="emailId" value="${personalInfo.emailId}">
+              <input v-bind:type="text" class = "form-control" id = "emailId" name = "emailId" placeholder="이메일아이디" v-model= "emailId">
+
               <span class="input-group-text">@</span>
-              <select class="form-select" aria-label="Default select example" name="emailDomain" value="${personalInfo.emailDomain}">
+              <select :class="form-select" aria-label="Default select example" name="emailDomain" :value= "emailDomain">
                 <option selected>선택</option>
                 <option value="ssafy.com">ssafy.com</option>
                 <option value="naver.com">naver.com</option>
@@ -54,15 +66,15 @@
           <div class="mb-3">
             <label for="phone" class="form-label">연락처</label>
             <div class="input-group" id="phone">
-              <select class="form-select" aria-label="Default select example" name="startPhoneNumber" value="${personalInfo.startPhoneNumber}">
+              <select :class="form-select" aria-label="Default select example" name="startPhoneNumber" :value= "startPhoneNumber">
                 <option value="010" selected>010</option>
                 <option value="011">011</option>
                 <option value="070">070</option>
               </select>
               <span class="input-group-text">-</span>
-              <input type="text" class="form-control" aria-label="middlePhoneNumber" name="middlePhoneNumber" maxlength="4" value="${personalInfo.middlePhoneNumber}">
+              <input type="text" :class="form-control" aria-label="middlePhoneNumber" name="middlePhoneNumber" maxlength="4" :value="middlePhoneNumber">
               <span class="input-group-text">-</span>
-              <input type="text" class="form-control" aria-label="endPhoneNumber" name="endPhoneNumber" maxlength="4" value="${personalInfo.endPhoneNumber}">
+              <input type="text" :class="form-control" aria-label="endPhoneNumber" name="endPhoneNumber" maxlength="4" :value="endPhoneNumber">
             </div>
           </div>
           <button type="submit" class="btn btn-outline-primary w-25">상세 정보 변경</button>
@@ -75,7 +87,6 @@
 
 <script>
 import axios from "axios";
-// import EditLoginPw from "@/components/member/EditLoginPw.vue";
 
 export default {
 
@@ -83,6 +94,22 @@ export default {
   data(){
     return{
       personalInfo: "",
+      username: "", 
+      nickname: "", 
+      emailId: "",
+      emailDomain: "",
+
+      emailDomains:[
+        {
+          value: "ssafy.com"
+        },
+        {
+          value: "naver.com"
+        },
+        {
+          value: "kakao.com"
+        }
+      ]
     };
   },
 
@@ -94,6 +121,13 @@ export default {
       axios.post(API_URL)
         .then((response) => {
           this.personalInfo = response.data;
+          this.username = this.personalInfo.username;
+          this.nickname = this.personalInfo.nickname;
+          this.emailDomain = this.personalInfo.emailDomain;
+          this.emailId = this.personalInfo.emailId;
+          this.startPhoneNumber = this.personalInfo.startPhoneNumber;
+          this.middlePhoneNumber = this.personalInfo.middlePhoneNumber;
+          this.endPhoneNumber = this.personalInfo.endPhoneNumber;
           console.log(response);
         })
         .catch(() => {});
