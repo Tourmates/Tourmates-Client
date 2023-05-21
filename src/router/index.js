@@ -28,6 +28,8 @@ import MyPage from "@/components/member/MyPage.vue";
 import MyPageView from "@/views/MyPageView.vue";
 import EditPersonalInfo from "@/components/member/EditMyPersonal.vue";
 import EditLoginPw from "@/components/member/EditLoginPw.vue";
+import AttractionView from "@/views/AttractionView.vue";
+import KakaoMap from "@/components/attraction/KakaoMap.vue";
 
 Vue.use(VueRouter)
 
@@ -36,6 +38,18 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/attractions',
+    name: 'AttractionView',
+    component: AttractionView,
+    children: [
+      {
+        path: '',
+        name: 'KakaoMap',
+        component: KakaoMap,
+      }
+    ]
   },
   {
     path: '/my',
