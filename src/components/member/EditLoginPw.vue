@@ -91,12 +91,11 @@ export default{
             };
 
             axios.post(API_URL, data)
-            .then(function(response){
-                confirm("비밀번호 변경 완료");
-//                console.log(response);
-            })
-            .catch(() => {
-                alert("비밀번호 변경 실패");
+                .then(() => {
+                    confirm("비밀번호 변경 완료");                
+                })
+                .catch(() => {
+                    alert("비밀번호 변경 실패");
                 });
         }
     }
