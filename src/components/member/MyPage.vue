@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="col" onclick="location.href='/my/articles'">
+      <div class="col" onclick="location.href='/my/boards'">
         <div class="card h-100 border-0 shadow">
           <div class="card-body">
             <div
