@@ -13,22 +13,25 @@
         </button>
       </div>
       <div class="collapse mt-3" id="collapseExample">
-        <form class="card card-body" method="post" action="${root}/my/account">
-          <div class="mb-3">
-            <label for="oldLoginPw" class="form-label">현재 비밀번호</label>
-            <input type="password" class="form-control" id="oldLoginPw" name="oldLoginPw">
+        <form class="card card-body" @submit.prevent = "editLoginPw">
+            <div class="mb-3">
+            <label for="currentLoginPw" class="form-label">현재 비밀번호</label>
+            <input type="password" class="form-control" ref = "currentLoginPw" id="currentLoginPw" name="currentLoginPw" v-model = "currentLoginPw">
           </div>
-          <div class="row mb-3">
+
+            <div class="row mb-3">
             <div class="col-md-6">
-              <label for="newLoginPw" class="form-label">새로운 비밀번호</label>
-              <input type="password" class="form-control" id="newLoginPw" name="newLoginPw">
+                <label for="newLoginPw" class="form-label">새로운 비밀번호</label>
+                <input type="password" class="form-control" ref = "newLoginPw" id="newLoginPw" name="newLoginPw" v-model = "newLoginPw">
             </div>
             <div class="col-md-6">
-              <label for="confirmLoginPw" class="form-label">비밀번호 확인</label>
-              <input type="password" class="form-control" id="confirmLoginPw" name="confirmLoginPw">
+              <label for="checkedNewLoginPw" class="form-label">비밀번호 확인</label>
+              <input type="password" class="form-control" ref = "checkedNewLoginPw" id="checkedNewLoginPw" name="checkedNewLoginPw" v-model = "checkedNewLoginPw">
             </div>
           </div>
-          <button type="submit" class="btn btn-outline-primary w-25">비밀번호 변경</button>
+          <div>
+            <button type="submit" class="btn btn-outline-primary w-25">변경</button>
+          </div>
         </form>
       </div>
     </div>
@@ -37,12 +40,64 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 
 export default{
     name: "EditLoginPw",
-    data(){
+    data (){
         return{
+            currentLoginPw: '',
+            newLoginPw: '',
+            checkedNewLoginPw: '',
+        };
+    },
+    methods: {
+        editLoginPw(){  
+            
+            console.log("hiHI");
 
+            if(this.currentLoginPw === ''){
+                alert("현재 비밀번호를 입력하세요");
+                this.$refs.currentLoginPw.focus();
+                return;
+            }
+            if(this.newLoginPw === ''){
+                alert("새로운 비밀번호를 입력하세요");
+                this.$refs.newLoginPw.focus();
+                return;
+            }
+            if(this.checkedNewLoginPw === ''){
+                alert("비밀번호 확인을 입력하세요");
+                this.$refs.checkedNewLoginPw.focus();
+                return;
+            }
+
+            if(this.newLoginPw === this.checkedNewLoginPw){
+                confirm("새로운 비밀번호와 비밀번호 확인 값에 일치합니다.");
+            }
+            else{
+                alert("비밀번호와 새로운 비밀번호 값이 일치하지 않습니다.");
+                return;
+            }
+
+            // const API_URL = `http://localhost:8080${this.$route.fullPath}`;
+            const API_URL = `http://localhost:8080/my/loginPw`;
+
+            let data = {
+                currentLoginPw: this.currentLoginPw,
+                newLoginPw: this.newLoginPw,
+                checkedNewLoginPw: this.checkedNewLoginPw
+            };
+
+            axios.post(API_URL, data)
+            .then(function(response){
+                confirm("비밀번호 변경 완료");
+//                console.log(response);
+            })
+            .catch(() => {
+                alert("비밀번호 변경 실패");
+                });
         }
     }
 }
