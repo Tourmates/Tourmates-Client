@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div class="col" onclick="location.href='${root}/my/personal'">
+      <router-link to="/my/personal" class="col" style="text-decoration: none; color: #212529;">
         <div class="card h-100 border-0 shadow">
           <div class="card-body">
             <div
@@ -59,8 +59,8 @@
             <p class="card-text">본인의 개인 정보를 변경할 수 있습니다.</p>
           </div>
         </div>
-      </div>
-      <router-link to="/my/loginPw" class="col" style="text-decoration: none; color: #212529;">
+      </router-link>
+      <router-link to="/my/account" class="col" style="text-decoration: none; color: #212529;">
         <div class="card h-100 border-0 shadow">
           <div class="card-body">
             <div
