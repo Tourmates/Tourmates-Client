@@ -30,6 +30,7 @@ import EditPersonalInfo from "@/components/member/EditMyPersonal.vue";
 import EditLoginPw from "@/components/member/EditLoginPw.vue";
 import AttractionView from "@/views/AttractionView.vue";
 import KakaoMap from "@/components/attraction/KakaoMap.vue";
+import MyBoards from "@/components/member/MyBoards.vue";
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,11 @@ const routes = [
         name: 'EditLoginPw',
         component: EditLoginPw
       },
+      {
+        path: 'boards',
+        name: 'MyBoards',
+        component: MyBoards
+      }
     ]
   },
   {
