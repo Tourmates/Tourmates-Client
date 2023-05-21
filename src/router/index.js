@@ -27,6 +27,7 @@ import HotPlaceList from "@/components/hotplace/list/HotPlaceList.vue";
 import MyPage from "@/components/member/MyPage.vue";
 import MyPageView from "@/views/MyPageView.vue";
 import EditPersonalInfo from "@/components/member/EditMyPersonal.vue";
+import EditLoginPw from "@/components/member/EditLoginPw.vue";
 
 Vue.use(VueRouter)
 
@@ -50,7 +51,12 @@ const routes = [
         path: 'personal',
         name: 'EditPersonalInfo',
         component: EditPersonalInfo
-      }
+      },
+      {
+        path: 'account',
+        name: 'EditLoginPw',
+        component: EditLoginPw
+      },
     ]
   },
   {
