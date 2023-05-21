@@ -28,6 +28,7 @@ import MyPage from "@/components/member/MyPage.vue";
 import MyPageView from "@/views/MyPageView.vue";
 import EditPersonalInfo from "@/components/member/EditMyPersonal.vue";
 import EditLoginPw from "@/components/member/EditLoginPw.vue";
+import MyBoards from "@/components/member/MyBoards.vue";
 
 Vue.use(VueRouter)
 
@@ -57,6 +58,11 @@ const routes = [
         name: 'EditLoginPw',
         component: EditLoginPw
       },
+      {
+        path: 'boards',
+        name: 'MyBoards',
+        component: MyBoards
+      }
     ]
   },
   {
