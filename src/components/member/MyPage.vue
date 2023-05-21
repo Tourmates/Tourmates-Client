@@ -60,7 +60,7 @@
           </div>
         </div>
       </router-link>
-      <router-link to="/my/loginPw" class="col" style="text-decoration: none; color: #212529;">
+      <router-link to="/my/account" class="col" style="text-decoration: none; color: #212529;">
         <div class="card h-100 border-0 shadow">
           <div class="card-body">
             <div
