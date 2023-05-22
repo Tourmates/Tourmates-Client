@@ -33,6 +33,10 @@ import KakaoMap from "@/components/attraction/KakaoMap.vue";
 import MyBoards from "@/components/member/MyBoards.vue";
 import DetailHotPlace from "@/components/hotplace/DetailHotPlace.vue";
 import EditHotPlace from "@/components/hotplace/EditHotPlace.vue";
+import TripPlanView from "@/views/TripPlanView.vue";
+import TripPlans from "@/components/tripplan/TripPlans.vue";
+import TripPlanList from "@/components/tripplan/list/TripPlanList.vue";
+import RegisterTripPlan from "@/components/tripplan/RegisterTripPlan.vue";
 
 Vue.use(VueRouter)
 
@@ -211,6 +215,28 @@ const routes = [
         path: ':hotPlaceId/edit',
         name: 'editHotPlace',
         component: EditHotPlace,
+      }
+    ]
+  },
+  {
+    path: '/tripPlans',
+    component: TripPlanView,
+    children: [
+      {
+        path: '',
+        name: 'tripPlans',
+        component: TripPlans,
+        children: [
+          {
+            path: '',
+            component: TripPlanList,
+          }
+        ]
+      },
+      {
+        path: 'register',
+        name: 'registerTripPlan',
+        component: RegisterTripPlan,
       }
     ]
   }
