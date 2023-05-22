@@ -38,24 +38,24 @@
         {{personalInfo.startPhoneNumber}}-{{personalInfo.middlePhoneNumber}}-{{personalInfo.endPhoneNumber}}
       </p>
       <div class="collapse mt-3" id="collapseExample">
-        <form class="card card-body" method="post" action="/my/personal">
+        <form class="card card-body" @submit.prevent = "editPersonal">
           <div class="mb-3">
             <label for="nickname" class="form-label">이름</label>
-            <input v-bind:type = "text" class = "form-control" id = "username" name = "username" placeholder="닉네임" v-model="username">
+            <input type = "text" class = "form-control" ref = "username" id = "username" name = "username" placeholder="닉네임" v-model="username">
             <!-- <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" value={{personalInfo.nickname}}> -->
           </div>
           <div class="mb-3">
             <label for="nickname" class="form-label">닉네임</label>
-            <input v-bind:type = "text" class = "form-control" id = "nickname" name = "nickname" placeholder="닉네임" v-model= "nickname">
+            <input type = "text" class = "form-control" ref = "nickname" id = "nickname" name = "nickname" placeholder="닉네임" v-model= "nickname">
             <!-- <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" value={{personalInfo.nickname}}> -->
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">이메일</label>
             <div class="input-group" id="email">
-              <input v-bind:type="text" class = "form-control" id = "emailId" name = "emailId" placeholder="이메일아이디" v-model= "emailId">
+              <input type="text" class = "form-control" ref = "emailId" id = "emailId" name = "emailId" placeholder="이메일아이디" v-model= "emailId">
 
               <span class="input-group-text">@</span>
-              <select :class="form-select" aria-label="Default select example" name="emailDomain" :value= "emailDomain">
+              <select :class="form-select" aria-label="Default select example" ref = "emailDomain" name="emailDomain" v-model = "emailDomain">
                 <option selected>선택</option>
                 <option value="ssafy.com">ssafy.com</option>
                 <option value="naver.com">naver.com</option>
@@ -66,15 +66,15 @@
           <div class="mb-3">
             <label for="phone" class="form-label">연락처</label>
             <div class="input-group" id="phone">
-              <select :class="form-select" aria-label="Default select example" name="startPhoneNumber" :value= "startPhoneNumber">
+              <select :class="form-select" aria-label="Default select example" ref = "startPhoneNumber" name="startPhoneNumber"  v-model = "startPhoneNumber">
                 <option value="010" selected>010</option>
                 <option value="011">011</option>
                 <option value="070">070</option>
               </select>
               <span class="input-group-text">-</span>
-              <input type="text" :class="form-control" aria-label="middlePhoneNumber" name="middlePhoneNumber" maxlength="4" :value="middlePhoneNumber">
+              <input type="text" :class="form-control" aria-label="middlePhoneNumber" ref = "middlePhoneNumber" name="middlePhoneNumber" maxlength="4" v-model = "middlePhoneNumber">
               <span class="input-group-text">-</span>
-              <input type="text" :class="form-control" aria-label="endPhoneNumber" name="endPhoneNumber" maxlength="4" :value="endPhoneNumber">
+              <input type="text" :class="form-control" aria-label="endPhoneNumber" ref = "endPhoneNumber" name="endPhoneNumber" maxlength="4"  v-model = "endPhoneNumber">
             </div>
           </div>
           <button type="submit" class="btn btn-outline-primary w-25">상세 정보 변경</button>
@@ -90,14 +90,17 @@ import axios from "axios";
 
 export default {
 
-  name: "EditLoginPw",
+  name: "EditMyPersonal",
   data(){
     return{
-      personalInfo: "",
-      username: "", 
-      nickname: "", 
+      username: "",
+      nickname: "",
       emailId: "",
       emailDomain: "",
+      startPhoneNumber: "",
+      middlePhoneNumber: "",
+      endPhoneNumber: "",
+      personalInfo: "",
 
       emailDomains:[
         {
@@ -114,6 +117,30 @@ export default {
   },
 
   methods: {
+    editPersonal(){
+      console.log("hiihihi");
+
+      const API_URL = `http://localhost:8080/my/personal/info`;
+
+      let data = {
+        username: this.username,
+        nickname: this.nickname,
+        emailId: this.emailId,
+        emailDomain: this.emailDomain,
+        startPhoneNumber: this.startPhoneNumber,
+        middlePhoneNumber: this.middlePhoneNumber,
+        endPhoneNumber: this.endPhoneNumber
+      };
+
+      axios.post(API_URL, data)
+      .then(() =>{
+        confirm("개인정보 변경 완료");
+      })
+      .catch(() => {
+        alert("개인정보 변경 실패");
+      });
+
+    },
     getPersonalInfo(){
       const API_URL = `http://localhost:8080/my/detail`;
       console.log("API_URL");
@@ -132,6 +159,7 @@ export default {
         })
         .catch(() => {});
       console.log("#####");
+      console.log("username: " + this.username); 
       console.log(API_URL);
     }
   },
