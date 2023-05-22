@@ -32,6 +32,7 @@ import AttractionView from "@/views/AttractionView.vue";
 import KakaoMap from "@/components/attraction/KakaoMap.vue";
 import MyBoards from "@/components/member/MyBoards.vue";
 import DetailHotPlace from "@/components/hotplace/DetailHotPlace.vue";
+import EditHotPlace from "@/components/hotplace/EditHotPlace.vue";
 
 Vue.use(VueRouter)
 
@@ -206,6 +207,11 @@ const routes = [
         name: 'detailHotPlace',
         component: DetailHotPlace,
       },
+      {
+        path: ':hotPlaceId/edit',
+        name: 'editHotPlace',
+        component: EditHotPlace,
+      }
     ]
   }
 ]

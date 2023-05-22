@@ -10,7 +10,11 @@
                 <tr>
                     <th class='align-middle'>지도</th>
                     <td>
-                        <KakaoMap @setContentId="setContentId"/>
+                        <edit-kakao-map
+                                :attractionTitle="attractionTitle"
+                                :latitude="latitude"
+                                :longitude="longitude"
+                        />
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +66,7 @@
             </table>
             <div class="d-flex justify-content-center">
                 <button class="btn btn-outline-secondary me-2" type="button">취소</button>
-                <button class="btn btn-outline-primary ms-2" type="button" @click="register">등록</button>
+                <button class="btn btn-outline-primary ms-2" type="button" @click="edit">수정</button>
             </div>
         </div>
     </section>
@@ -70,21 +74,21 @@
 <script>
 import {Vue2TinymceEditor} from "vue2-tinymce-editor";
 import axios from "axios";
-import KakaoMap from "@/components/hotplace/KakaoMap.vue";
+import EditKakaoMap from "@/components/hotplace/EditKakaoMap.vue";
 
 export default {
-    name: "RegisterHotPlace",
-    components: {
-        KakaoMap,
-        Vue2TinymceEditor,
-    },
+    name: "EditHotPlaces",
+    components: {EditKakaoMap, Vue2TinymceEditor},
     data() {
         return {
             contentId: "",
-            tag: "ATTRACTION",
+            tag: "",
             title: "",
             visitedDate: "",
             content: "",
+            attractionTitle: "",
+            latitude: "",
+            longitude: "",
             selectList: [
                 {name: '관광지', value: 'ATTRACTION'},
                 {name: '문화시설', value: 'CULTURAL'},
@@ -97,13 +101,37 @@ export default {
             ],
         };
     },
+    created() {
+        this.init();
+    },
     methods: {
-        register() {
+        init() {
+            let jwtToken = localStorage.getItem("jwt-token");
+
+            const API_URL = `http://localhost:8080${this.$route.fullPath}`;
+            axios.get(API_URL, {
+                headers: {
+                    Authorization: jwtToken,
+                }
+            })
+                .then((response) => {
+                    const hotPlace = response.data.data;
+                    this.tag = hotPlace.tag;
+                    this.visitedDate = hotPlace.visitedDate;
+                    this.title = hotPlace.title;
+                    this.content = hotPlace.content;
+                    this.attractionTitle = hotPlace.attractionTitle;
+                    this.latitude = hotPlace.latitude;
+                    this.longitude = hotPlace.longitude;
+                })
+                .catch(() => {
+                });
+        },
+        edit() {
             let jwtToken = localStorage.getItem("jwt-token");
 
             let frm = new FormData();
             let file = document.getElementById('formFileMultiple');
-            frm.append('contentId', this.contentId);
             frm.append('tag', this.tag);
             frm.append('title', this.title);
             frm.append('visitedDate', this.visitedDate);
@@ -111,23 +139,19 @@ export default {
             for (let i = 0; i < file.files.length; i++) {
                 frm.append('files', file.files[i]);
             }
-            const API_URL = 'http://localhost:8080/hotPlaces/register';
+
+            const API_URL = `http://localhost:8080${this.$route.fullPath}`;
             axios.post(API_URL, frm, {
-                headers: {
+                headers : {
                     Authorization: jwtToken,
                     'Content-Type': 'multipart/form-data',
                 }
             })
-                .then(() => {
-                    this.$router.replace('/hotPlaces')
-                      .catch(() => {
-                      });
-                })
-                .catch(() => {
-                });
-        },
-        setContentId(contentId) {
-            this.contentId = contentId;
+              .then(() =>  {
+                  this.$router.replace('/hotPlaces')
+                    .catch(() => {
+                    });
+              })
         }
     },
 }
