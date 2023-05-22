@@ -26,7 +26,7 @@ import HotPlaces from "@/components/hotplace/HotPlaces.vue";
 import HotPlaceList from "@/components/hotplace/list/HotPlaceList.vue";
 import MyPage from "@/components/member/MyPage.vue";
 import MyPageView from "@/views/MyPageView.vue";
-import EditPersonalInfo from "@/components/member/EditMyPersonal.vue";
+import EditMyPersonal from "@/components/member/EditMyPersonal.vue";
 import EditLoginPw from "@/components/member/EditLoginPw.vue";
 import AttractionView from "@/views/AttractionView.vue";
 import KakaoMap from "@/components/attraction/KakaoMap.vue";
@@ -37,6 +37,7 @@ import TripPlanView from "@/views/TripPlanView.vue";
 import TripPlans from "@/components/tripplan/TripPlans.vue";
 import TripPlanList from "@/components/tripplan/list/TripPlanList.vue";
 import RegisterTripPlan from "@/components/tripplan/RegisterTripPlan.vue";
+import WithDrawal from "@/components/member/WithDrawal.vue";
 
 Vue.use(VueRouter)
 
@@ -69,9 +70,12 @@ const routes = [
         component: MyPage,
       },
       {
+        path: ''
+      },
+      {
         path: 'personal',
-        name: 'EditPersonalInfo',
-        component: EditPersonalInfo
+        name: 'editMyPersonal',
+        component: EditMyPersonal
       },
       {
         path: 'account',
@@ -82,6 +86,11 @@ const routes = [
         path: 'boards',
         name: 'MyBoards',
         component: MyBoards
+      },
+      {
+        path: 'withdrawal',
+        name: 'Withdrawal',
+        component: WithDrawal
       }
     ]
   },

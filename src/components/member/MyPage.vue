@@ -74,7 +74,7 @@
           </div>
         </div>
       </router-link>
-      <div class="col" onclick="location.href='${root}/my/withdrawal'">
+      <div class="col" onclick="location.href='/my/withdrawal'">
         <div class="card h-100 border-0 shadow">
           <div class="card-body">
             <div
