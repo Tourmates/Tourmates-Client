@@ -15,6 +15,7 @@
                     :tag="hotPlace.tag"
                     :title="hotPlace.title"
                     :visitedDate="hotPlace.visitedDate"
+                    :storeFileName="hotPlace.storeFileName"
                     />
                 </div>
             </div>
@@ -50,8 +51,7 @@ export default {
             const API_URL = `http://localhost:8080/hotPlaces?pageNumber=${this.$route.query.pageNumber - this.pageLimit}`;
             axios.get(API_URL)
               .then((response) => {
-                  this.hotPlaces = response.data.date;
-                  this.page = response.data.page;
+                  this.hotPlaces = response.data.data;
               });
         },
 
