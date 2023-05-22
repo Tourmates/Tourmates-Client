@@ -31,6 +31,7 @@ import EditLoginPw from "@/components/member/EditLoginPw.vue";
 import AttractionView from "@/views/AttractionView.vue";
 import KakaoMap from "@/components/attraction/KakaoMap.vue";
 import MyBoards from "@/components/member/MyBoards.vue";
+import DetailHotPlace from "@/components/hotplace/DetailHotPlace.vue";
 
 Vue.use(VueRouter)
 
@@ -199,7 +200,12 @@ const routes = [
         path: 'register',
         name: 'registerHotPlace',
         component: RegisterHotPlace,
-      }
+      },
+      {
+        path: ':hotPlaceId',
+        name: 'detailHotPlace',
+        component: DetailHotPlace,
+      },
     ]
   }
 ]
