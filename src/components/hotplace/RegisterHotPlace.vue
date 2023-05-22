@@ -10,7 +10,7 @@
                 <tr>
                     <th class='align-middle'>지도</th>
                     <td>
-                        <KakaoMap/>
+                        <KakaoMap @setContentId="setContentId"/>
                     </td>
                 </tr>
                 <tr>
@@ -80,8 +80,8 @@ export default {
     },
     data() {
         return {
-            contentId: "125405",
-            tag: "",
+            contentId: "",
+            tag: "ATTRACTION",
             title: "",
             visitedDate: "",
             content: "",
@@ -119,11 +119,17 @@ export default {
                 }
             })
                 .then(() => {
+                    this.$router.replace('/hotPlaces')
+                      .catch(() => {
+                      });
                     console.log('file success');
                 })
                 .catch(() => {
                     console.log('file upload exception');
                 });
+        },
+        setContentId(contentId) {
+            this.contentId = contentId;
         }
     },
 }
