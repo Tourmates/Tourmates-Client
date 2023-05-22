@@ -3,7 +3,7 @@
         <div class="mb-3">
             <!-- keyword -->
             <div>
-                <input type="text" class="form-control" id="keyword" v-model="keyword">
+                <input type="text" class="form-control" id="keyword" v-model="keyword" @keyup.enter="searchAttractions">
             </div>
             <div class="row">
                 <!-- sido -->
@@ -21,33 +21,49 @@
                 <div class="col">
                     <select class="form-select" v-model="gugunCode">
                         <option
-                          v-for="(gugun, index) in gugunList"
-                          :key="index"
-                          :value="gugun.gugunCode"
-                        >{{ gugun.name }}</option>
+                                v-for="(gugun, index) in gugunList"
+                                :key="index"
+                                :value="gugun.gugunCode"
+                        >{{ gugun.name }}
+                        </option>
                     </select>
                 </div>
             </div>
             <!-- contentType -->
-            <!--            <div>-->
-            <!--                <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">-->
-            <!--                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>-->
-            <!--                <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">-->
-            <!--                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>-->
-            <!--                <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">-->
-            <!--                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>-->
-            <!--                <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">-->
-            <!--                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>-->
-            <!--                <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">-->
-            <!--                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>-->
-            <!--                <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">-->
-            <!--                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>-->
-            <!--                <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">-->
-            <!--                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>-->
-            <!--                <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">-->
-            <!--                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>-->
-            <!--            </div>-->
-            <button class="btn btn-primary" @click="searchAttractions">검색</button>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="ATTRACTION" value="ATTRACTION" v-model="contentTypeIds">
+                    <label class="form-check-label" for="ATTRACTION">관광지</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="CULTURAL" value="CULTURAL" v-model="contentTypeIds">
+                    <label class="form-check-label" for="CULTURAL">문화시설</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="FESTIVAL" value="FESTIVAL" v-model="contentTypeIds">
+                    <label class="form-check-label" for="FESTIVAL">축제공연행사</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="TRAVEL" value="TRAVEL" v-model="contentTypeIds">
+                    <label class="form-check-label" for="TRAVEL">여행코스</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="LEPORTS" value="LEPORTS" v-model="contentTypeIds">
+                    <label class="form-check-label" for="LEPORTS">레포츠</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="ACCOMMODATION" value="ACCOMMODATION" v-model="contentTypeIds">
+                    <label class="form-check-label" for="ACCOMMODATION">숙박</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="SHOPPING" value="SHOPPING" v-model="contentTypeIds">
+                    <label class="form-check-label" for="SHOPPING">쇼핑</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="RESTAURANT" value="RESTAURANT" v-model="contentTypeIds">
+                    <label class="form-check-label" for="RESTAURANT">음식점</label>
+                </div>
+            </div>
         </div>
         <div>
             <div id="map"></div>
@@ -68,7 +84,7 @@ export default {
             keyword: "",
             sidoCode: "1",
             gugunCode: "1",
-            contentTypeId: "0",
+            contentTypeIds: [],
         };
     },
     created() {
@@ -91,20 +107,20 @@ export default {
         getSido() {
             const API_URL = `http://localhost:8080/attractions/sido`;
             axios.get(API_URL)
-              .then((response) => {
-                  this.sidoList = response.data.data;
-              })
-              .catch(() => {
-              });
+                .then((response) => {
+                    this.sidoList = response.data.data;
+                })
+                .catch(() => {
+                });
         },
         getGugun(sidoCode) {
             const API_URL = `http://localhost:8080/attractions/gugun?sidoCode=${sidoCode}`;
             axios.get(API_URL)
-              .then((response) => {
-                  this.gugunList = response.data.data;
-              })
-              .catch(() => {
-              });
+                .then((response) => {
+                    this.gugunList = response.data.data;
+                })
+                .catch(() => {
+                });
         },
         loadScript() {
             const script = document.createElement("script");
@@ -122,7 +138,10 @@ export default {
             this.map = new window.kakao.maps.Map(container, options);
         },
         searchAttractions() {
-            const API_URL = `http://localhost:8080/attractions?keyword=${this.keyword}&sidoCode=${this.sidoCode}&gugunCode=${this.gugunCode}&contentTypeId=`;
+            let API_URL = `http://localhost:8080/attractions?keyword=${this.keyword}&sidoCode=${this.sidoCode}&gugunCode=${this.gugunCode}`;
+            for(let i = 0; i < this.contentTypeIds.length; i++) {
+                API_URL += `&contentTypes=${this.contentTypeIds[i]}`;
+            }
             axios.get(API_URL)
                 .then((response) => {
                     if (response.data.data.length > 0) {
@@ -150,7 +169,6 @@ export default {
                     attractions[i].longitude
                 );
                 if (center == null) {
-                    console.log("test")
                     center = markerPosition;
                 }
                 const marker = new window.kakao.maps.Marker({
@@ -165,6 +183,15 @@ export default {
         moveCenter(position) {
             this.map.setCenter(position);
         },
+        test() {
+            let allOffcanvas = document.querySelectorAll('.offcanvas');
+            console.log(allOffcanvas.length)
+            for(let i = 0; i < allOffcanvas.length; i++) {
+                allOffcanvas[i].addEventListener('hide.bs.offcanvas', function () {
+                    console.log("test")
+                });
+            }
+        }
     },
     watch: {
         sidoCode: function (sidoCode) {
@@ -172,6 +199,9 @@ export default {
             this.searchAttractions();
         },
         gugunCode: function () {
+            this.searchAttractions();
+        },
+        contentTypeIds: function () {
             this.searchAttractions();
         }
     }
