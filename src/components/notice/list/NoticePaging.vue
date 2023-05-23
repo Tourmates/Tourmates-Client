@@ -11,9 +11,9 @@
                     </router-link>
                 </li>
                 <li class="page-item" v-for="index in endPageIndex - startPageIndex + 1" :key="index"
-                :class="{active: ( (startPageIndex + index - 1) == currentPageIndex)}">
+                :class="{active: ( (startPageIndex + index - 1) === currentPageIndex)}">
                     <router-link
-                    :to="`/notices?pageNumber=${ (startPageIndex + index - 1) * listRowCount }`"
+                    :to="`/notices?pageNumber=${ ((startPageIndex + index - 1) * listRowCount ) / 10 }`"
                     class="page-link"
                     @click.native="movePage(startPageIndex + index - 1)"
                     >
@@ -54,9 +54,9 @@ export default {
     methods: {
         movePage(param) {
             this.currentPageIndex = param;
-            this.initComponent();
+            this.init();
         },
-        initComponent() {
+        init() {
             const API_URL = "http://localhost:8080/notices/totalCount";
             axios.get(API_URL)
               .then((response) => {
@@ -68,13 +68,13 @@ export default {
 
             this.pageCount = Math.ceil(this.totalListItemCount / this.listRowCount);
 
-            if ((this.currentPageIndex % this.pageLinkCount) == 0) {
+            if ((this.currentPageIndex % this.pageLinkCount) === 0) {
                 this.startPageIndex = ((this.currentPageIndex / this.pageLinkCount) - 1) * this.pageLinkCount + 1
             } else {
                 this.startPageIndex = Math.floor(this.currentPageIndex / this.pageLinkCount) * this.pageLinkCount + 1
             }
 
-            if ((this.currentPageIndex % this.pageLinkCount) == 0) {
+            if ((this.currentPageIndex % this.pageLinkCount) === 0) {
                 this.endPageIndex = ((this.currentPageIndex / this.pageLinkCount) - 1) * this.pageLinkCount + this.pageLinkCount
             } else {
                 this.endPageIndex = Math.floor(this.currentPageIndex / this.pageLinkCount) * this.pageLinkCount + this.pageLinkCount;
@@ -104,11 +104,12 @@ export default {
         }
     },
     created() {
-        this.initComponent();
+        this.init();
     },
     mounted() {
-        this.$router.push('notices?pageNumber=' + this.listRowCount)
-          .catch(() => {});
+        this.$router.push('notices?pageNumber=' + (this.listRowCount / 10))
+          .catch(() => {
+          });
     }
 };
 </script>

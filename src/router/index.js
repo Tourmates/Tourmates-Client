@@ -7,7 +7,7 @@ import Boards from '@/components/board/Boards.vue'
 import RegisterBoard from "@/components/board/RegisterBoard.vue";
 import RegisterBoardComment from "@/components/board/DetailBoard.vue";
 import NoticeView from "@/views/NoticeView.vue";
-import NoticeList from "@/components/notice/NoticeList.vue";
+import NoticeList from "@/components/notice/Notices.vue";
 import BoardList from "@/components/board/list/BoardList.vue";
 import List from "@/components/notice/list/List.vue";
 import DetailNotice from "@/components/notice/DetailNotice.vue";
@@ -38,7 +38,9 @@ import TripPlans from "@/components/tripplan/TripPlans.vue";
 import TripPlanList from "@/components/tripplan/list/TripPlanList.vue";
 import RegisterTripPlan from "@/components/tripplan/RegisterTripPlan.vue";
 import WithDrawal from "@/components/member/WithDrawal.vue";
+import MyHotPlaceList from "@/components/member/MyHotPlaceList.vue";
 import DetailTripPlan from "@/components/tripplan/DetailTripPlan.vue";
+import MyFriends from "@/components/member/MyFriends.vue";
 
 Vue.use(VueRouter)
 
@@ -79,6 +81,11 @@ const routes = [
         component: EditMyPersonal
       },
       {
+        path: 'friends',
+        name: 'registerMyFriends',
+        component: MyFriends
+      },
+      {
         path: 'account',
         name: 'EditLoginPw',
         component: EditLoginPw
@@ -87,6 +94,11 @@ const routes = [
         path: 'boards',
         name: 'MyBoards',
         component: MyBoards
+      },
+      {
+        path: 'hotPlaces',
+        name: "MyHotPlaceList",
+        component: MyHotPlaceList
       },
       {
         path: 'withdrawal',
