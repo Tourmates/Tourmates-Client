@@ -39,6 +39,7 @@ import TripPlanList from "@/components/tripplan/list/TripPlanList.vue";
 import RegisterTripPlan from "@/components/tripplan/RegisterTripPlan.vue";
 import WithDrawal from "@/components/member/WithDrawal.vue";
 import MyHotPlaceList from "@/components/member/MyHotPlaceList.vue";
+import DetailTripPlan from "@/components/tripplan/DetailTripPlan.vue";
 
 Vue.use(VueRouter)
 
@@ -252,6 +253,11 @@ const routes = [
         path: 'register',
         name: 'registerTripPlan',
         component: RegisterTripPlan,
+      },
+      {
+        path: ':tripPlanId',
+        name: 'detailTripPlan',
+        component: DetailTripPlan,
       }
     ]
   }
