@@ -7,7 +7,7 @@ import Boards from '@/components/board/Boards.vue'
 import RegisterBoard from "@/components/board/RegisterBoard.vue";
 import RegisterBoardComment from "@/components/board/DetailBoard.vue";
 import NoticeView from "@/views/NoticeView.vue";
-import NoticeList from "@/components/notice/NoticeList.vue";
+import NoticeList from "@/components/notice/Notices.vue";
 import BoardList from "@/components/board/list/BoardList.vue";
 import List from "@/components/notice/list/List.vue";
 import DetailNotice from "@/components/notice/DetailNotice.vue";
