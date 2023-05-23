@@ -38,6 +38,7 @@ import TripPlans from "@/components/tripplan/TripPlans.vue";
 import TripPlanList from "@/components/tripplan/list/TripPlanList.vue";
 import RegisterTripPlan from "@/components/tripplan/RegisterTripPlan.vue";
 import WithDrawal from "@/components/member/WithDrawal.vue";
+import MyHotPlaceList from "@/components/member/MyHotPlaceList.vue";
 
 Vue.use(VueRouter)
 
@@ -86,6 +87,11 @@ const routes = [
         path: 'boards',
         name: 'MyBoards',
         component: MyBoards
+      },
+      {
+        path: 'hotPlaces',
+        name: "MyHotPlaceList",
+        component: MyHotPlaceList
       },
       {
         path: 'withdrawal',
