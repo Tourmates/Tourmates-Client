@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="container">
+      <h1 class="text-center">여행계획</h1>
       <router-view/>
       <trip-plan-paging/>
   </div>
