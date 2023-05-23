@@ -1,6 +1,7 @@
 <template>
-    <div class="container">
-        <table class="table">
+    <div class="container mt-5">
+        <h4>공지사항</h4>
+        <table class="table mt-3">
             <tbody class="table-group-divider">
             <tr>
                 <td>
@@ -13,7 +14,6 @@
                                 {{notice.createdDate}}
                             </div>
                         </div>
-                        <div>운영자</div>
                     </div>
                 </td>
             </tr>

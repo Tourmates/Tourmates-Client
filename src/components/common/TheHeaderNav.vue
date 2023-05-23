@@ -33,6 +33,7 @@
                 </li>
             </ul>
         </header>
+        <hr/>
     </div>
 </template>
 
