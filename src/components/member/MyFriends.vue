@@ -4,7 +4,7 @@
     <form>
       <div class="mb-5">
       <div class="input-group mb-3">
-      <input type="text" v-model="friend" class="form-control" placeholder="친구 로그인 아이디를 입력하세요." aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <input type="text" v-model="targetLoginId" class="form-control" placeholder="친구 로그인 아이디를 입력하세요." aria-label="Recipient's username" aria-describedby="basic-addon2">
       <button class="input-group-text" id="basic-addon2" @click="register">친구 등록</button>
       </div>
     </div>
@@ -20,14 +20,17 @@ export default {
   name: "MyFriends",
   data() {
     return {
-        friend: [],
+      targetLoginId: '',
     };
   }, 
   methods: {
     register() {
       let data = {
-          friend: this.friend,
+        targetLoginId: this.targetLoginId,
       }
+
+      alert("친구 등록 준비");
+      alert(this.targetLoginId);
 
       console.log("friend: " + this.friend);
       const API_URL = `http://localhost:8080/friends/register`;
