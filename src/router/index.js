@@ -40,6 +40,7 @@ import RegisterTripPlan from "@/components/tripplan/RegisterTripPlan.vue";
 import WithDrawal from "@/components/member/WithDrawal.vue";
 import MyHotPlaceList from "@/components/member/MyHotPlaceList.vue";
 import DetailTripPlan from "@/components/tripplan/DetailTripPlan.vue";
+import MyFriends from "@/components/member/MyFriends.vue";
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,11 @@ const routes = [
         path: 'personal',
         name: 'editMyPersonal',
         component: EditMyPersonal
+      },
+      {
+        path: 'friends',
+        name: 'registerMyFriends',
+        component: MyFriends
       },
       {
         path: 'account',
