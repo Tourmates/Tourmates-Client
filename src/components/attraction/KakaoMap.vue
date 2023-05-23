@@ -1,80 +1,115 @@
 <template>
-    <div class="container">
-        <div class="mb-3">
-            <!-- keyword -->
-            <div>
-                <input type="text" class="form-control" id="keyword" v-model="keyword" @keyup.enter="searchAttractions">
-            </div>
-            <div class="row">
-                <!-- sido -->
-                <div class="col">
-                    <select class="form-select" v-model="sidoCode">
-                        <option
-                                v-for="(sido, index) in sidoList"
-                                :key="index"
-                                :value="sido.sidoCode"
-                        >{{ sido.name }}
-                        </option>
-                    </select>
-                </div>
-                <!-- gugun -->
-                <div class="col">
-                    <select class="form-select" v-model="gugunCode">
-                        <option
-                                v-for="(gugun, index) in gugunList"
-                                :key="index"
-                                :value="gugun.gugunCode"
-                        >{{ gugun.name }}
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <!-- contentType -->
-            <div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="ATTRACTION" value="ATTRACTION" v-model="contentTypeIds">
-                    <label class="form-check-label" for="ATTRACTION">관광지</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="CULTURAL" value="CULTURAL" v-model="contentTypeIds">
-                    <label class="form-check-label" for="CULTURAL">문화시설</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="FESTIVAL" value="FESTIVAL" v-model="contentTypeIds">
-                    <label class="form-check-label" for="FESTIVAL">축제공연행사</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="TRAVEL" value="TRAVEL" v-model="contentTypeIds">
-                    <label class="form-check-label" for="TRAVEL">여행코스</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="LEPORTS" value="LEPORTS" v-model="contentTypeIds">
-                    <label class="form-check-label" for="LEPORTS">레포츠</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="ACCOMMODATION" value="ACCOMMODATION" v-model="contentTypeIds">
-                    <label class="form-check-label" for="ACCOMMODATION">숙박</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="SHOPPING" value="SHOPPING" v-model="contentTypeIds">
-                    <label class="form-check-label" for="SHOPPING">쇼핑</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="RESTAURANT" value="RESTAURANT" v-model="contentTypeIds">
-                    <label class="form-check-label" for="RESTAURANT">음식점</label>
+    <div class="row">
+        <div class="col-3">
+            <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary">
+                <a href="/"
+                   class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom d-flex justify-content-between">
+                    <span class="fs-5 fw-semibold">검색된 여행지 정보</span>
+                    <span class="fs-5 fw-semibold">검색결과 {{attractions.length}}개</span>
+                </a>
+                <div class="list-group list-group-flush border-bottom scrollarea" style="overflow-y: scroll; height: 733px;">
+                    <attraction-info
+                            v-for="(attraction, index) in attractions"
+                            :key="index"
+                            :contentId="attraction.contentId"
+                            :title="attraction.title"
+                            :zipcode="attraction.zipcode"
+                            :addr1="attraction.addr1"
+                            :latitude="attraction.latitude"
+                            :longitude="attraction.longitude"
+                            @clickAttraction="clickAttraction"
+                    />
                 </div>
             </div>
         </div>
-        <div>
-            <div id="map"></div>
+        <div class="col-9 ps-0">
+            <div class="mb-3 ps-3 me-5 pe-5">
+                <div class="row">
+                    <!-- sido -->
+                    <div class="col">
+                        <select class="form-select" v-model="sidoCode">
+                            <option
+                                    v-for="(sido, index) in sidoList"
+                                    :key="index"
+                                    :value="sido.sidoCode"
+                            >{{ sido.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- gugun -->
+                    <div class="col">
+                        <select class="form-select" v-model="gugunCode">
+                            <option
+                                    v-for="(gugun, index) in gugunList"
+                                    :key="index"
+                                    :value="gugun.gugunCode"
+                            >{{ gugun.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- keyword -->
+                    <div class="col">
+                        <input type="text" class="form-control" id="keyword" v-model="keyword"
+                               @keyup.enter="searchAttractions">
+                    </div>
+                </div>
+                <!-- contentType -->
+                <div class="d-flex justify-content-between mt-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="ATTRACTION" value="ATTRACTION"
+                               v-model="contentTypeIds">
+                        <label class="form-check-label" for="ATTRACTION">관광지</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="CULTURAL" value="CULTURAL"
+                               v-model="contentTypeIds">
+                        <label class="form-check-label" for="CULTURAL">문화시설</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="FESTIVAL" value="FESTIVAL"
+                               v-model="contentTypeIds">
+                        <label class="form-check-label" for="FESTIVAL">축제공연행사</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="TRAVEL" value="TRAVEL"
+                               v-model="contentTypeIds">
+                        <label class="form-check-label" for="TRAVEL">여행코스</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="LEPORTS" value="LEPORTS"
+                               v-model="contentTypeIds">
+                        <label class="form-check-label" for="LEPORTS">레포츠</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="ACCOMMODATION" value="ACCOMMODATION"
+                               v-model="contentTypeIds">
+                        <label class="form-check-label" for="ACCOMMODATION">숙박</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="SHOPPING" value="SHOPPING"
+                               v-model="contentTypeIds">
+                        <label class="form-check-label" for="SHOPPING">쇼핑</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="RESTAURANT" value="RESTAURANT"
+                               v-model="contentTypeIds">
+                        <label class="form-check-label" for="RESTAURANT">음식점</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div id="map"></div>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import axios from "axios";
+import AttractionInfo from "@/components/attraction/AttractionInfo.vue";
 
 export default {
     name: "KakaoMap",
+    components: {AttractionInfo},
     data() {
         return {
             map: null,
@@ -85,6 +120,8 @@ export default {
             sidoCode: "1",
             gugunCode: "1",
             contentTypeIds: [],
+            attractions: [],
+            overlay: null,
         };
     },
     created() {
@@ -139,13 +176,14 @@ export default {
         },
         searchAttractions() {
             let API_URL = `http://localhost:8080/attractions?keyword=${this.keyword}&sidoCode=${this.sidoCode}&gugunCode=${this.gugunCode}`;
-            for(let i = 0; i < this.contentTypeIds.length; i++) {
+            for (let i = 0; i < this.contentTypeIds.length; i++) {
                 API_URL += `&contentTypes=${this.contentTypeIds[i]}`;
             }
             axios.get(API_URL)
                 .then((response) => {
                     if (response.data.data.length > 0) {
-                        this.loadMaker(response.data.data);
+                        this.loadMakers(response.data.data);
+                        this.attractions = response.data.data
                     } else {
                         alert("검색 결과가 존재하지 않습니다.")
                     }
@@ -154,7 +192,7 @@ export default {
                     console.log("exception");
                 });
         },
-        loadMaker(attractions) {
+        loadMakers(attractions) {
             //기존 마커 제거
             if (this.markers.length > 0) {
                 for (let i = 0; i < this.markers.length; i++) {
@@ -183,15 +221,10 @@ export default {
         moveCenter(position) {
             this.map.setCenter(position);
         },
-        test() {
-            let allOffcanvas = document.querySelectorAll('.offcanvas');
-            console.log(allOffcanvas.length)
-            for(let i = 0; i < allOffcanvas.length; i++) {
-                allOffcanvas[i].addEventListener('hide.bs.offcanvas', function () {
-                    console.log("test")
-                });
-            }
-        }
+        clickAttraction(latitude, longitude) {
+            const position = new window.kakao.maps.LatLng(latitude, longitude);
+            this.moveCenter(position);
+        },
     },
     watch: {
         sidoCode: function (sidoCode) {
@@ -210,6 +243,6 @@ export default {
 <style scoped>
 #map {
     width: 100%;
-    height: 550px;
+    height: 700px;
 }
 </style>
