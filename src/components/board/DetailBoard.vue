@@ -115,17 +115,17 @@ export default {
                 });
         },
         initComponent() {
+
+            let jwtToken = localStorage.getItem("jwt-token");
+
             const API_URL = `http://localhost:8080${this.$route.fullPath}/comments/list`;
-            axios.post(API_URL)
+            axios.post(API_URL, {
+                headers: {
+                    Authorization: jwtToken,
+                }
+            })
                 .then((response) => {
-                    console.log("API_URL");
-                    console.log(API_URL);
                     this.comments = response.data;
-                    // console.log("&&&&&&");
-                    // console.log(response);
-                    console.log("------");
-                    console.log(this.comments);
-                    console.log(this.comments.length);
                 })
         }
     },

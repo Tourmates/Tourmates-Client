@@ -10,7 +10,7 @@
             </div>
             <div class="col-6">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
-                    <button class="btn btn-primary me-md-2" type="button">최적화</button>
+                    <button class="btn btn-primary" type="button" @click="optimize">최적화</button>
                     <button class="btn btn-primary" type="button" @click="register">등록</button>
                 </div>
                 <table class="table table-bordered">
@@ -108,7 +108,7 @@ export default {
         },
         register() {
             let jwtToken = localStorage.getItem("jwt-token");
-            const API_URL = `http://localhost:8080/tripPlans/register`;
+            const API_URL = `http://localhost:8080/tripPlans/register`; 
             let contentIds = [];
             for(let i = 0; i < this.plans.length; i++) {
                 contentIds.push(this.plans[i].contentId);
@@ -130,6 +130,28 @@ export default {
               .catch(() => {
                   console.log('exception');
               });
+        },
+        optimize() {
+
+           let jwtToken = localStorage.getItem("jwt-token");
+
+            const API_URL = `http://localhost:8080/tripPlans/optimize`;
+
+            let attractionList = {
+                plans: this.plans
+            }
+
+            axios.post(API_URL,attractionList, {
+                headers: {
+                    Authorization: jwtToken,
+                }
+            })
+                .then(() => {
+                })
+                .catch((exception) => {
+                    alert(exception);
+                    console.log('exception');
+                });
         },
     },
     watch: {
