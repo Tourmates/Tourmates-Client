@@ -11,9 +11,9 @@
                     </router-link>
                 </li>
                 <li class="page-item" v-for="index in endPageIndex - startPageIndex + 1" :key="index"
-                    :class="{active: ( (startPageIndex + index - 1) == currentPageIndex)}">
+                    :class="{active: ( (startPageIndex + index - 1) === currentPageIndex)}">
                     <router-link
-                            :to="`/boards?pageNumber=${ (startPageIndex + index - 1) * listRowCount }`"
+                            :to="`/boards?pageNumber=${ ((startPageIndex + index - 1) * listRowCount)/10 }`"
                             class="page-link"
                             @click.native="movePage(startPageIndex + index - 1)"
                     >
@@ -54,9 +54,9 @@ export default {
     methods: {
         movePage(param) {
             this.currentPageIndex = param;
-            this.initComponent();
+            this.init();
         },
-        initComponent() {
+        init() {
             const API_URL = "http://localhost:8080/boards/totalCount";
             axios.get(API_URL)
                 .then((response) => {
@@ -104,10 +104,10 @@ export default {
         }
     },
     created() {
-        this.initComponent();
+        this.init();
     },
     mounted() {
-        this.$router.push('boards?pageNumber=' + this.listRowCount)
+        this.$router.push('boards?pageNumber=' + (this.listRowCount / 10))
             .catch(() => {
             });
     }

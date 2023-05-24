@@ -9,7 +9,7 @@ import RegisterBoardComment from "@/components/board/DetailBoard.vue";
 import NoticeView from "@/views/NoticeView.vue";
 import NoticeList from "@/components/notice/Notices.vue";
 import BoardList from "@/components/board/list/BoardList.vue";
-import List from "@/components/notice/list/List.vue";
+import List from "@/components/notice/list/NoticeList.vue";
 import DetailNotice from "@/components/notice/DetailNotice.vue";
 import DetailBoard from "@/components/board/DetailBoard.vue";
 import EditBoard from "@/components/board/EditBoard.vue";

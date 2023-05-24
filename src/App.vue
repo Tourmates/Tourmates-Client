@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <the-header-nav @logout="logout"/>
+        <the-header-nav @logout="logout" :key="count"/>
         <router-view @login="login"/>
         <the-footer-nav/>
     </div>
@@ -14,6 +14,11 @@ import axios from "axios";
 export default {
     name: "App",
     components: {TheHeaderNav, TheFooterNav},
+    data() {
+        return {
+            count: 0,
+        };
+    },
     methods: {
         login(member) {
             const API_URL = `http://localhost:8080/login`;
@@ -24,13 +29,15 @@ export default {
                       console.log("login")
                       const jwtToken = response.data.grantType + " " + response.data.accessToken;
                       localStorage.setItem('jwt-token', jwtToken);
-                      this.$router.push('/');
+                      this.count++;
+                      this.$router.replace('/');
                   }
               });
         },
         logout() {
             console.log("logout");
             localStorage.removeItem('jwt-token');
+            this.count++;
             this.$router.replace('/')
               .catch(() => {});
         },
