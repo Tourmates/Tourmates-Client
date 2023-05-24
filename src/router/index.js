@@ -41,6 +41,8 @@ import WithDrawal from "@/components/member/WithDrawal.vue";
 import MyHotPlaceList from "@/components/member/MyHotPlaceList.vue";
 import DetailTripPlan from "@/components/tripplan/DetailTripPlan.vue";
 import MyFriends from "@/components/member/MyFriends.vue";
+import Trends from "@/components/trend/Trends.vue";
+import TrendView from "@/views/TrendView.vue";
 
 Vue.use(VueRouter)
 
@@ -265,6 +267,16 @@ const routes = [
         name: 'detailTripPlan',
         component: DetailTripPlan,
       }
+    ]
+  },
+  {
+    path: "/trends",
+    component: Trends,
+    children: [
+      {
+        path: '',
+        component: TrendView,
+      },
     ]
   }
 ]
