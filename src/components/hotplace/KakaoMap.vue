@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class='row'>
             <div class="col-6">
                 <div id="map"></div>
@@ -46,6 +47,7 @@ export default {
     data() {
         return {
             map: null,
+
             attractions: [],
             matchAttractions: [],
             keyword: "",

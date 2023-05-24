@@ -52,6 +52,8 @@ export default {
             marker.setMap(this.map);
 
             this.moveCenter(markerPosition);
+            this.map.setZoomable(false);
+            this.map.setDraggable(false);
         },
         moveCenter(position) {
             this.map.setCenter(position);

@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <div class="container">
+      <div class="mt-5 mb-5 text-center">
+          <h3>핫플자랑하기</h3>
+      </div>
+      <hr/>
+      <br/>
       <router-view/>
       <hot-place-paging/>
   </div>

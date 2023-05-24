@@ -1,14 +1,15 @@
 <template>
     <div class="col">
         <div class="card h-100">
-            <img :src="require(`@/assets/${storeFileName}`)" class="card-img-top" alt="img" style="object-fit: cover; height: 250px">
+            <img :src="require(`@/assets/upload/${storeFileName}`)" class="card-img-top" alt="img" style="object-fit: cover; height: 250px">
             <div class="card-body">
-                <a class="text-uppercase text-mute text-sm letter-spacing-2">{{tag}}</a>
                 <h5 class="card-title my-2">
                     <router-link class="text-dark" :to="`/hotPlaces/${hotPlaceId}`">{{title}}</router-link>
                 </h5>
                 <p class="text-gray-500 text-sm my-3">{{ visitedDate}}</p>
-                <router-link class="btn btn-link ps-0" :to="`/hotPlaces/${hotPlaceId}`">READ MORE</router-link>
+                <div>
+                    <span class="badge text-bg-light" v-for="(tag, index) in tags" :key="index">#{{tag}}</span>
+                </div>
             </div>
         </div>
     </div>
@@ -18,10 +19,16 @@ export default {
     name: "HotPlaceListRow",
     props: {
         hotPlaceId: {type: Number},
-        tag: {type: String},
+        tags: {type: Array},
         title: {type: String},
         visitedDate: {type: String},
         storeFileName: {type: String},
     },
 }
 </script>
+<style scoped>
+a {
+    text-decoration: none;
+    color: black;
+}
+</style>
