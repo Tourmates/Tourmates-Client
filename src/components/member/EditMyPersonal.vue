@@ -143,9 +143,14 @@ export default {
     },
     getPersonalInfo(){
       const API_URL = `http://localhost:8080/my/detail`;
-      console.log("API_URL");
 
-      axios.post(API_URL)
+      let jwtToken = localStorage.getItem("jwt-token");
+
+      axios.post(API_URL, {
+          headers: {
+              Authorization: jwtToken,
+          },
+      })
         .then((response) => {
           this.personalInfo = response.data;
           this.username = this.personalInfo.username;
@@ -157,7 +162,8 @@ export default {
           this.endPhoneNumber = this.personalInfo.endPhoneNumber;
           console.log(response);
         })
-        .catch(() => {});
+        .catch((exception) => {
+          alert(exception)});
       console.log("#####");
       console.log("username: " + this.username); 
       console.log(API_URL);
