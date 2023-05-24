@@ -14,7 +14,7 @@
                     <router-link to="#" class="nav-link px-2 text-secondary">개인정보처리방침</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="#" class="nav-link px-2 text-secondary">FAQs</router-link>
+                    <router-link to="/qna" class="nav-link px-2 text-secondary">QnA</router-link>
                 </li>
             </ul>
         </footer>
