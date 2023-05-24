@@ -22,7 +22,7 @@
                 </div>
             </div>
         </section>
-        <div v-if="true">
+        <div>
             <table class="table mt-3">
                 <colgroup>
                     <col :style="{width: '10%'}">
@@ -58,7 +58,6 @@
                 </tbody>
             </table>
         </div>
-        <div v-else>등록된 여행계획이 없습니다.</div>
     </div>
 </template>
 <script>

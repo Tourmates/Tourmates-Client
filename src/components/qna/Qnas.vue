@@ -1,6 +1,10 @@
 <template>
     <div class="container">
-        <h1>문의사항</h1>
+        <div class="mt-5 mb-5 text-center">
+            <h3>문의사항</h3>
+        </div>
+        <hr/>
+        <br/>
         <router-view/>
         <qna-paging/>
     </div>
