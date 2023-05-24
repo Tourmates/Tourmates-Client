@@ -8,27 +8,13 @@
                 </colgroup>
                 <tbody>
                 <tr>
-                    <th class='align-middle'>지도</th>
+                    <th class='align-middle text-center'>지도</th>
                     <td>
                         <KakaoMap @setContentId="setContentId"/>
                     </td>
                 </tr>
                 <tr>
-                    <th class='align-middle'>카테고리</th>
-                    <td>
-                        <select class="form-select w-50" aria-label="Default select example" name="tag"
-                                v-model="tag">
-                            <option
-                                    v-for="(item, index) in selectList"
-                                    :key="index"
-                                    :value="item.value"
-                            >{{ item.name }}
-                            </option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th class='align-middle'>제목</th>
+                    <th class='align-middle text-center'>제목</th>
                     <td>
                         <div>
                             <input type="text" class="form-control" id="title" name='title' v-model="title"
@@ -37,7 +23,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class='align-middle'>방문일자</th>
+                    <th class='align-middle text-center'>방문일자</th>
                     <td>
                         <div>
                             <input type="date" class="form-control w-50" id="title" name='title' v-model="visitedDate">
@@ -45,17 +31,23 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class='align-middle'>내용</th>
+                    <th class='align-middle text-center'>내용</th>
                     <td>
                         <vue2-tinymce-editor :height="600" v-model="content"></vue2-tinymce-editor>
                     </td>
                 </tr>
                 <tr>
-                    <th class='align-middle'>첨부파일</th>
+                    <th class='align-middle text-center'>첨부파일</th>
                     <td>
                         <div>
                             <input class="form-control" type="file" id="formFileMultiple" multiple>
                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class='align-middle text-center'>해시태그</th>
+                    <td>
+                        <tagify :tags="tags" placeholder="#해시태그"/>
                     </td>
                 </tr>
                 </tbody>
@@ -71,30 +63,22 @@
 import {Vue2TinymceEditor} from "vue2-tinymce-editor";
 import axios from "axios";
 import KakaoMap from "@/components/hotplace/KakaoMap.vue";
+import {Tagify} from "tagify-vue/src/app";
 
 export default {
     name: "RegisterHotPlace",
     components: {
         KakaoMap,
         Vue2TinymceEditor,
+        Tagify,
     },
     data() {
         return {
             contentId: "",
-            tag: "ATTRACTION",
+            tags: [],
             title: "",
             visitedDate: "",
             content: "",
-            selectList: [
-                {name: '관광지', value: 'ATTRACTION'},
-                {name: '문화시설', value: 'CULTURAL'},
-                {name: '축제공연행사', value: 'FESTIVAL'},
-                {name: '여행코스', value: 'TRAVEL'},
-                {name: '레포츠', value: 'LEPORTS'},
-                {name: '숙박', value: 'ACCOMMODATION'},
-                {name: '쇼핑', value: 'SHOPPING'},
-                {name: '음식점', value: 'RESTAURANT'},
-            ],
         };
     },
     methods: {
@@ -104,7 +88,7 @@ export default {
             let frm = new FormData();
             let file = document.getElementById('formFileMultiple');
             frm.append('contentId', this.contentId);
-            frm.append('tag', this.tag);
+            frm.append('tags', this.tags);
             frm.append('title', this.title);
             frm.append('visitedDate', this.visitedDate);
             frm.append('content', this.content);

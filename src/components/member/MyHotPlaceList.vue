@@ -5,7 +5,7 @@
       <div v-for = "(hotPlace) in hotPlaces" :key = "hotPlace"> 
         <div class="col">
           <div class="card h-100">
-            <img :src="require(`@/assets/${hotPlace.storeFileName}`)" class="card-img-top" alt="img" style="object-fit: cover; height: 250px">
+            <img :src="require(`@/assets/upload/${hotPlace.storeFileName}`)" class="card-img-top" alt="img" style="object-fit: cover; height: 250px">
             <div class="card-body">
               <div class="text-uppercase text-mute text-sm letter-spacing-2">{{hotPlace.tag}}</div>
               <h5 class="card-title my-2">

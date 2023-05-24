@@ -1,5 +1,10 @@
 <template>
     <div class="container">
+        <div class="mt-5 mb-5 text-center">
+            <h3>핫플자랑하기</h3>
+        </div>
+        <hr/>
+        <br/>
         <!-- 핫플레이스 내용 -->
         <section>
             <div class="row">
@@ -38,7 +43,7 @@
                         <tr>
                             <th class='align-middle text-center'>첨부파일</th>
                             <td colspan="3">
-                                <img :src="require(`@/assets/${hotPlace.images[0]}`)" class="card-img-top" alt="img"
+                                <img :src="require(`@/assets/upload/${hotPlace.images[0]}`)" class="card-img-top" alt="img"
                                      style="object-fit: cover; height: 250px">
                             </td>
                         </tr>
@@ -47,9 +52,10 @@
                 </div>
             </div>
             <div v-html="hotPlace.content"></div>
+            <span class="badge text-bg-light" v-for="(tag, index) in hotPlace.tags" :key="index">#{{tag}}</span>
         </section>
         <!-- 수정, 삭제 버튼 -->
-        <div class="d-flex justify-content-center" v-if="hotPlace.isMine">
+        <div class="d-flex justify-content-center mt-3" v-if="hotPlace.isMine">
             <router-link :to="`/hotPlaces/${hotPlace.hotPlaceId}/edit`" class="btn btn-outline-primary me-2" type="button">수정</router-link>
             <button class="btn btn-outline-danger ms-2" type="button" @click="remove">삭제</button>
         </div>
@@ -82,6 +88,7 @@ export default {
             })
                 .then((response) => {
                     this.hotPlace = response.data.data;
+                    console.log(this.hotPlace);
                 })
                 .catch(() => {
                 });
