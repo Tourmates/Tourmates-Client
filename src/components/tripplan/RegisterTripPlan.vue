@@ -108,7 +108,7 @@ export default {
         },
         register() {
             let jwtToken = localStorage.getItem("jwt-token");
-            const API_URL = `http://localhost:8080/trips/register`;
+            const API_URL = `http://localhost:8080/tripPlans/register`;
             let contentIds = [];
             for(let i = 0; i < this.plans.length; i++) {
                 contentIds.push(this.plans[i].contentId);
