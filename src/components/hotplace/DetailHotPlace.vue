@@ -60,6 +60,31 @@
             <button class="btn btn-outline-danger ms-2" type="button" @click="remove">삭제</button>
         </div>
         <!-- 댓글 -->
+        <div class="p-3 bg-secondary bg-gradient bg-opacity-10 border border-bg-body border-start-0 rounded-end">
+            <div class="input-group">
+                                <textarea v-model="comment" rows="7" cols="50" class="form-control"
+                                          aria-label="With textarea" placeholder="댓글을 입력하세요."></textarea>
+            </div>
+            <br/>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary" type="button" @click="insertComment">등록</button>
+            </div>
+        </div>
+        <div>
+            <ol class="list-group list-group-numbered">
+                <ul v-for="comment in comments" :key="comment"
+                    class="list-group-item d-flex justify-content-between align-items-start">
+                    <br/>
+                    <div class="ms-2 me-auto">
+                        <span class="fw-bold">{{ comment.nickName }}</span> | {{ comment.createdTime }}
+                        <div>
+                            {{ comment.content }}
+                        </div>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">14</span>
+                </ul>
+            </ol>
+        </div>
     </div>
 </template>
 <script>
@@ -68,14 +93,16 @@ import axios from "axios";
 
 export default {
     name: "DetailHotPlace",
-    components: {DetailKakaoMap},
+    components: { DetailKakaoMap },
     data() {
         return {
             hotPlace: "",
+            comments: [],
         };
     },
     created() {
         this.init();
+        this.initComponent();
     },
     methods: {
         init() {
@@ -96,7 +123,7 @@ export default {
         remove() {
             let jwtToken = localStorage.getItem("jwt-token");
             const API_URL = `http://localhost:8080${this.$route.fullPath}/remove`;
-            axios.post(API_URL, {},{
+            axios.post(API_URL, {}, {
                 headers: {
                     Authorization: jwtToken,
                 }
@@ -107,7 +134,41 @@ export default {
                 })
                 .catch(() => {
                 });
-        }
-    },
+        },
+        initComponent() {
+
+            let jwtToken = localStorage.getItem("jwt-token");
+
+            const API_URL = `http://localhost:8080${this.$route.fullPath}/comments/list`;
+
+            alert(API_URL);
+            console.log("API_URL" + API_URL);
+            axios.post(API_URL, {
+                headers: {
+                    Authorization: jwtToken,
+                }
+            })
+                .then((response) => {
+                    this.comments = response.data;
+                })
+        },
+        insertComment() {
+            let jwtToken = localStorage.getItem("jwt-token");
+            const API_URL = `http://localhost:8080${this.$route.fullPath}/comments/register`;
+
+            let data = {
+                comment: this.comment
+            }
+
+            axios.post(API_URL, data, {
+                headers: {
+                    Authorization: jwtToken,
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                });
+        },
+    }
 }
 </script>
