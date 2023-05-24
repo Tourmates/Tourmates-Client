@@ -228,10 +228,12 @@ export default {
     },
     watch: {
         sidoCode: function (sidoCode) {
+            this.keyword = "";
             this.getGugun(sidoCode);
             this.searchAttractions();
         },
         gugunCode: function () {
+            this.keyword = "";
             this.searchAttractions();
         },
         contentTypeIds: function () {
