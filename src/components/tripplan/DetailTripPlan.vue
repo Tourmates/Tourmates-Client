@@ -5,23 +5,21 @@
                 <register-kakao-map :plans="plans"/>
             </div>
             <div class="col-6">
-                <table class="table table-bordered">
-                    <colgroup>
-                        <col style="width: 20%;">
-                        <col style="width: 80%;">
-                    </colgroup>
+                <div class="row p-0 m-0 col-12 justify-content-between">
+                <input type="text" style="width: 70%" v-model="nickname" class="form-control" placeholder="친구 닉네임 입력" >
+                <button style="height:50px; width : 30%" class="btn btn-primary" type="button" @click="share">친구랑 공유하기</button>
+                </div>
+                <table class="table table-bordered mt-4" style = "height:88%">
                     <tbody>
-                        <input type="text" v-model="targetId" class="form-control" placeholder="친구 아이디 입력"  aria-describedby="basic-addon2">
-                        <button style="height:50px;width:200px" class="btn btn-primary" type="button" @click="share">친구랑 공유하기</button>
                         <tr>
-                        <th class='align-middle text-center'>제목</th>
+                        <th class='align-middle text-center col-3'>제목</th>
                         <td>{{ title }}</td>
-                    </tr>
+                        </tr>
                     <tr>
                         <th colspan="2" class='align-middle text-center'>여행정보</th>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="2" style="height:100% ; overflow-y: scroll">
                             <plan-card
                                 v-for="(plan, index) in plans"
                                 :key="`${index}_plan`"
@@ -30,6 +28,7 @@
                                 :zipcode="plan.zipcode"
                                 :image="plan.image"
                             />
+
                         </td>
                     </tr>
                     </tbody>
@@ -73,7 +72,7 @@ export default {
     components: { PlanCard, RegisterKakaoMap },
     data() {
         return {
-            targetId: "",
+            nickname: "",
             tripPlanId: "",
             comments: [],
             plans: [],
@@ -107,7 +106,7 @@ export default {
 
             let data = {
                 tripPlanId: this.tripPlanId,
-                targetId: this.targetId,
+                nickname: this.nickname,
             }
 
             axios.post(API_URL, data, {
@@ -117,7 +116,7 @@ export default {
             })
                 .then(() => {
 
-                    alert(this.targetId + "에게 여행 계획이 공유되었습니다.");
+                    alert(this.nickname + "에게 여행 계획이 공유되었습니다.");
                     this.$router.replace('/tripPlans')
                         .catch(() => {
                         });
