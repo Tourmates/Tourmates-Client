@@ -89,6 +89,7 @@ export default {
             attractionTitle: "",
             latitude: "",
             longitude: "",
+            hashtag: [],
             selectList: [
                 {name: '관광지', value: 'ATTRACTION'},
                 {name: '문화시설', value: 'CULTURAL'},
@@ -117,12 +118,16 @@ export default {
                 .then((response) => {
                     const hotPlace = response.data.data;
                     this.tag = hotPlace.tag;
-                    this.visitedDate = hotPlace.visitedDate;
                     this.title = hotPlace.title;
+                    this.visitedDate = hotPlace.visitedDate;
                     this.content = hotPlace.content;
                     this.attractionTitle = hotPlace.attractionTitle;
                     this.latitude = hotPlace.latitude;
                     this.longitude = hotPlace.longitude;
+                    this.hashtag = hotPlace.hashtag;
+
+                    console.log("hotPlace");
+                    console.log(hotPlace);
                 })
                 .catch(() => {
                 });
