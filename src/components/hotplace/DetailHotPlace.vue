@@ -38,7 +38,7 @@
                         <tr>
                             <th class='align-middle text-center'>첨부파일</th>
                             <td colspan="3">
-                                <img :src="require(`@/assets/${hotPlace.images[0]}`)" class="card-img-top" alt="img"
+                                <img :src="require(`@/assets/upload/${hotPlace.images[0]}`)" class="card-img-top" alt="img"
                                      style="object-fit: cover; height: 250px">
                             </td>
                         </tr>
@@ -111,8 +111,10 @@ export default {
             })
                 .then((response) => {
                     this.hotPlace = response.data.data;
+                    alert("성공");
                 })
                 .catch(() => {
+                    alert("실패");
                 });
         },
         remove() {
