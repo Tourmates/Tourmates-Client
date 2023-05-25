@@ -103,7 +103,6 @@ export default {
             let data = {
                 comment: this.comment
             }
-            console.log("###Here");
 
             axios.post(API_URL, data, {
                 headers: {
@@ -111,6 +110,7 @@ export default {
                 }
             })
                 .then(function (response) {
+                    window.location.reload(true);
                     console.log(response);
                 });
         },
