@@ -43,6 +43,8 @@ import DetailTripPlan from "@/components/tripplan/DetailTripPlan.vue";
 import MyFriends from "@/components/member/MyFriends.vue";
 import Trends from "@/components/trend/Trends.vue";
 import TrendView from "@/views/TrendView.vue";
+import MyTripPlanList from "@/components/member/MyTripPlanList.vue";
+
 
 Vue.use(VueRouter)
 
@@ -91,6 +93,11 @@ const routes = [
         path: 'account',
         name: 'EditLoginPw',
         component: EditLoginPw
+      },
+      {
+        path: 'tripPlans',
+        name: 'myTripPlanList',
+        component: MyTripPlanList
       },
       {
         path: 'boards',
