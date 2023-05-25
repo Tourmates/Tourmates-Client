@@ -58,7 +58,12 @@ export default {
         },
         initComponent() {
             const API_URL = "http://localhost:8080/my/tripPlans/totalCount";
-            axios.get(API_URL)
+            let jwtToken = localStorage.getItem("jwt-token");
+            axios.get(API_URL,{
+                    header: {
+                            Authorization: jwtToken,
+                    }
+            })
                 .then((response) => {
                     this.totalListItemCount = response;
                     this.initUI();
