@@ -20,7 +20,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class='align-middle text-center'>제목</th>
+                    <th class='align-middle text-center'>내용</th>
                     <td>
                         <vue2-tinymce-editor :height="600" v-model="content"></vue2-tinymce-editor>
                     </td>
@@ -45,7 +45,6 @@ export default {
     },
     data() {
         return {
-            tag: "",
             title: "",
             content: "",
         };
@@ -54,7 +53,6 @@ export default {
         register() {
             let jwtToken = localStorage.getItem("jwt-token");
             let json = {
-                tag: this.tag,
                 title: this.title,
                 content: this.content,
             };
@@ -68,7 +66,7 @@ export default {
                 }
             )
                 .then(() => {
-                    this.$router.push("/boards");
+                    this.$router.push("/qna");
                 })
         },
     }
