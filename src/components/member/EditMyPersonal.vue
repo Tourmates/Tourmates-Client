@@ -132,7 +132,13 @@ export default {
         endPhoneNumber: this.endPhoneNumber
       };
 
-      axios.post(API_URL, data)
+        let jwtToken = localStorage.getItem("jwt-token");
+
+        axios.post(API_URL, data,{
+          headers: {
+              Authorization: jwtToken,
+          },
+      })
       .then(() =>{
         confirm("개인정보 변경 완료");
       })
@@ -146,9 +152,11 @@ export default {
 
       let jwtToken = localStorage.getItem("jwt-token");
 
-      axios.post(API_URL, {
+      alert(jwtToken);
+
+      axios.get(API_URL, {
           headers: {
-              Authorization: jwtToken,
+            Authorization: jwtToken,
           },
       })
         .then((response) => {
