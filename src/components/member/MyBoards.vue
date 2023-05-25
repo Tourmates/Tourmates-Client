@@ -49,7 +49,6 @@ export default{
     },
     methods: {
         initComponent(){
-            console.log("hihiihihi");
 
             if (isNaN(this.$route.query.pageNumber)) {
                 this.$route.query.pageNumber = 10;
@@ -57,8 +56,13 @@ export default{
 
             const API_URL = `http://localhost:8080/my/boards?pageNumber=${this.$route.query.pageNumber - this.pageLimit}`;
 
-            console.log("hihiihihi");
-            axios.get(API_URL)
+            let jwtToken = localStorage.getItem("jwt-token");
+
+            axios.get(API_URL, {
+                headers: {
+                    Authorization: jwtToken,
+                },
+            })
                 .then((response) => {
                     console.log("response");
                     console.log(response);
