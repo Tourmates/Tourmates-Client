@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="true">
-            <table class="table mt-3">
+            <table class="table mt-3 container mb-3">
                 <colgroup>
                     <col :style="{width: '10%'}">
                     <col :style="{width: '60%'}">
@@ -64,7 +64,14 @@ export default {
     methods: {
         init() {
             const API_URL = `http://localhost:8080/my/tripPlans`;
-            axios.get(API_URL)
+
+            let jwtToken = localStorage.getItem("jwt-token");
+
+            axios.get(API_URL, {
+                headers: {
+                    Authorization: jwtToken,
+                },
+            })
                 .then((response) => {
                     this.plans = response.data.data;
                 })
