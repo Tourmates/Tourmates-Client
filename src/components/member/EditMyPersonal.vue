@@ -152,8 +152,6 @@ export default {
 
       let jwtToken = localStorage.getItem("jwt-token");
 
-      alert(jwtToken);
-
       axios.get(API_URL, {
           headers: {
             Authorization: jwtToken,
