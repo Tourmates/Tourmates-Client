@@ -64,12 +64,8 @@ export default{
                 },
             })
                 .then((response) => {
-                    console.log("response");
-                    console.log(response);
                     this.boards = response.data.data;
                     this.page = response.data.page;
-                    console.log("boards"); 
-                    console.log(this.boards);
                 });
 
         }
