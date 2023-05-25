@@ -44,7 +44,7 @@ import MyFriends from "@/components/member/MyFriends.vue";
 import Trends from "@/components/trend/Trends.vue";
 import TrendView from "@/views/TrendView.vue";
 import MyTripPlanList from "@/components/member/MyTripPlanList.vue";
-
+import MyTripPlans from "@/views/MyTripPlans.vue";
 
 Vue.use(VueRouter)
 
@@ -96,8 +96,14 @@ const routes = [
       },
       {
         path: 'tripPlans',
-        name: 'myTripPlanList',
-        component: MyTripPlanList
+        name: "MyTripPlans",
+        component: MyTripPlans,
+        children: [
+          {
+            path: '',
+            component: MyTripPlanList
+          }
+        ]
       },
       {
         path: 'boards',
