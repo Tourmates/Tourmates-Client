@@ -90,7 +90,13 @@ export default{
                 checkedNewLoginPw: this.checkedNewLoginPw
             };
 
-            axios.post(API_URL, data)
+        let jwtToken = localStorage.getItem("jwt-token");
+
+            axios.post(API_URL, data, {
+              headers: {
+                Authorization: jwtToken,
+              }
+            })
                 .then(() => {
                     confirm("비밀번호 변경 완료");                
                 })
