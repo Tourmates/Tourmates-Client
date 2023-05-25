@@ -117,6 +117,8 @@ export default {
                 }
             })
                 .then(() => {
+
+                    alert(this.targetId + "에게 여행 계획이 공유되었습니다.");
                     this.$router.replace('/tripPlans')
                         .catch(() => {
                         });
@@ -143,8 +145,14 @@ export default {
                 });
         },
         initComponent() {
+            let jwtToken = localStorage.getItem("jwt-token");
+
             const API_URL = `http://localhost:8080${this.$route.fullPath}/comments/list`;
-            axios.post(API_URL)
+            axios.get(API_URL, {
+                headers: {
+                    Authorization: jwtToken,
+                }
+            })
                 .then((response) => {
                     this.comments = response.data;
                 })
