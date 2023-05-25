@@ -2,9 +2,11 @@
 <div class="bg-body-tertiary">
   <section class="container pt-4 pb-5">
     <form>
-      <div class="mb-5">
-      <div class="input-group mb-3">
-      <input type="text" v-model="targetLoginId" class="form-control" placeholder="친구 로그인 아이디를 입력하세요." aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <h3 align = "center"> 친구 등록</h3>
+            <br/>
+            <div class="mb-5">
+              <div class="input-group mb-3">
+              <input type="text" v-model="targetLoginId" class="form-control" placeholder="여행을 공유하고 싶은 친구의 닉네임 입력하세요." aria-label="Recipient's username" aria-describedby="basic-addon2">
       <button class="input-group-text" id="basic-addon2" @click="register">친구 등록</button>
       </div>
     </div>
