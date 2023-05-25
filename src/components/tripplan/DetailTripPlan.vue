@@ -68,7 +68,6 @@ import RegisterKakaoMap from "@/components/tripplan/RegisterKakaoMap.vue";
 
 import axios from "axios";
 import PlanCard from "@/components/tripplan/PlanCard.vue";
-
 export default {
     name: "DetailTripPlan",
     components: { PlanCard, RegisterKakaoMap },
@@ -132,7 +131,7 @@ export default {
             const API_URL = `http://localhost:8080${this.$route.fullPath}/comments/register`;
 
             let data = {
-                comment: this.comment
+                comment: this.comment,
             }
 
             axios.post(API_URL, data, {
@@ -142,6 +141,7 @@ export default {
             })
                 .then(function (response) {
                     console.log(response);
+                    window.location.reload(true);
                 });
         },
         initComponent() {
