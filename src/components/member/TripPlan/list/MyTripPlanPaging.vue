@@ -4,7 +4,7 @@
                         <ul class="pagination">
                                 <li class="page-item" v-if="prev">
                                         <router-link
-                                                :to="`/my/tripPlans?pageNumber=${ (startPageIndex - 1) * listRowCount }`"
+                                                :to="`/tripPlans?pageNumber=${ (startPageIndex - 1) * listRowCount }`"
                                                 @click.native="movePage(startPageIndex - 1)"
                                                 class="page-link" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
@@ -13,7 +13,7 @@
                                 <li class="page-item" v-for="index in endPageIndex - startPageIndex + 1" :key="index"
                                     :class="{active: ( (startPageIndex + index - 1) === currentPageIndex)}">
                                         <router-link
-                                                :to="`/my/tripPlans?pageNumber=${ (startPageIndex + index - 1) * listRowCount }`"
+                                                :to="`/tripPlans?pageNumber=${ (startPageIndex + index - 1) * listRowCount }`"
                                                 class="page-link"
                                                 @click.native="movePage(startPageIndex + index - 1)"
                                         >
@@ -22,7 +22,7 @@
                                 </li>
                                 <li class="page-item" v-if="next">
                                         <router-link
-                                                :to="`/my/tripPlans?pageNumber=${ (endPageIndex + 1) * listRowCount }`"
+                                                :to="`/tripPlans?pageNumber=${ (endPageIndex + 1) * listRowCount }`"
                                                 @click.native="movePage(endPageIndex + 1)"
                                                 class="page-link" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
@@ -57,6 +57,7 @@ export default {
             this.initComponent();
         },
         initComponent() {
+
             const API_URL = "http://localhost:8080/my/tripPlans/totalCount";
             let jwtToken = localStorage.getItem("jwt-token");
             axios.get(API_URL,{
@@ -112,7 +113,7 @@ export default {
         this.initComponent();
     },
     mounted() {
-        this.$router.push('my/tripPlans?pageNumber=' + this.listRowCount)
+        this.$router.push('tripPlans?pageNumber=' + this.listRowCount)
             .catch(() => {});
     },
 }
