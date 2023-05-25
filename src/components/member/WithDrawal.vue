@@ -40,31 +40,33 @@ export default{
     },
     
     methods: {
-        withDrawal(){
+      withDrawal() {
 
-            var res = confirm("정말로 회원을 탈퇴하시겠습니까?");
+        var res = confirm("정말로 회원을 탈퇴하시겠습니까?");
 
-            if(res){
-                let data = {
-                loginPw: this.loginPw,
-                };
-                const API_URL = `http://localhost:8080${this.$route.fullPath}`;
-                axios.post(API_URL, data)
-                    .then(() =>{
-                        confirm("회원 탈퇴 완료");
-                 })
-                .catch(() => {
-                    alert("회원 탈퇴 실패");
-                })
-            }
-            console.log("######??");
+        let jwtToken = localStorage.getItem("jwt-token");
 
-          
-            
+        if (res) {
+          let data = {
+            loginPw: this.loginPw,
+          };
 
-           
-        //     const API_URL = `http:://localhost:8080/my/withdrawal`;
+          const API_URL = `http://localhost:8080${this.$route.fullPath}`;
+
+          axios.post(API_URL, data, {
+            headers: {
+              Authorization: jwtToken,
+            },
+          })
+            .then(() => {
+              confirm("회원 탈퇴 완료");
+            })
+            .catch(() => {
+              alert("회원 탈퇴 실패");
+            })
         }
+      }
+
     }
 }
 
