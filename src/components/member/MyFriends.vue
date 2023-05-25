@@ -29,12 +29,15 @@ export default {
         targetLoginId: this.targetLoginId,
       }
 
-      alert("친구 등록 준비");
-      alert(this.targetLoginId);
-
-      console.log("friend: " + this.friend);
       const API_URL = `http://localhost:8080/friends/register`;
-      axios.post(API_URL, data)
+
+      let jwtToken = localStorage.getItem("jwt-token");
+
+      axios.post(API_URL, data, {
+        headers: {
+          Authorization: jwtToken,
+        },
+      })
         .then(() => {
           console.log("register");
           alert("친구 등록 완료");
