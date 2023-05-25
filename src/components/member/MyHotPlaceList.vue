@@ -44,8 +44,14 @@ export default {
   methods: {
     initComponent() {
       const API_URL = `http://localhost:8080/my/hotPlaces`;
+      
+      let jwtToken = localStorage.getItem("jwt-token");
 
-      axios.get(API_URL)
+      axios.get(API_URL, {
+        headers: {
+            Authorization: jwtToken,
+          },
+      })
           .then((response) => {
               this.hotPlaces = response.data.data;
               console.log("###########");
