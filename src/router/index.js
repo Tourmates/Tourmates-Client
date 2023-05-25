@@ -212,14 +212,14 @@ const routes = [
         ]
       },
       {
-        path: ':questionId',
-        name: 'detailQna',
-        component: DetailQna,
-      },
-      {
         path: 'register',
         name: 'registerQna',
         component: RegisterQna,
+      },
+      {
+        path: ':questionId',
+        name: 'detailQna',
+        component: DetailQna,
       },
     ]
   },

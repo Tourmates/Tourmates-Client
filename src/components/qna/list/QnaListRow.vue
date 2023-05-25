@@ -1,6 +1,6 @@
 <template>
   <tr>
-      <th>1</th>
+      <th class="text-center">1</th>
       <td class="text-center">{{ type }}</td>
       <td>
           <router-link :to="`/qna/${questionId}`">{{ title }}</router-link>
@@ -20,3 +20,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+a {
+    text-decoration: none;
+    color: black;
+}
+</style>
